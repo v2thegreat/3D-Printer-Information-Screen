@@ -97,3 +97,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+
+# test_files
+printer_que/tests/*.csv
+printer_que/tests/*.txt
