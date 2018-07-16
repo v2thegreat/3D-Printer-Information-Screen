@@ -100,8 +100,8 @@ ENV/
 
 
 # test_files
-printer_que/tests/*.csv
-printer_que/tests/*.txt
+printer_que/tests/Personnel Info.csv
+printer_que/tests/Personnel Info.txt
 
 #Files created during runtime
 printer_que/*.csv
