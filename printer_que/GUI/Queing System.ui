@@ -25,7 +25,11 @@
   <property name="styleSheet">
    <string notr="true">background: rgb(255, 255, 255)</string>
   </property>
+<<<<<<< HEAD
   <widget class="QLabel" name="lblStudentIDDisplay">
+=======
+  <widget class="QLabel" name="lbl_St2_StudentIDDisplay">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -56,7 +60,11 @@
     <bool>false</bool>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum2">
+=======
+  <widget class="QPushButton" name="pb_St2_Num2">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -81,7 +89,11 @@
     <string>2</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum1">
+=======
+  <widget class="QPushButton" name="pb_St2_Num1">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -106,7 +118,11 @@
     <string>1</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum9">
+=======
+  <widget class="QPushButton" name="pb_St2_Num9">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -131,7 +147,11 @@
     <string>9</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum3">
+=======
+  <widget class="QPushButton" name="pb_St2_Num3">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -156,7 +176,11 @@
     <string>3</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum6">
+=======
+  <widget class="QPushButton" name="pb_St2_Num6">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -181,7 +205,11 @@
     <string>6</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum4">
+=======
+  <widget class="QPushButton" name="pb_St2_Num4">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -206,7 +234,11 @@
     <string>4</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum5">
+=======
+  <widget class="QPushButton" name="pb_St2_Num5">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -231,7 +263,11 @@
     <string>5</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum8">
+=======
+  <widget class="QPushButton" name="pb_St2_Num8">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -256,7 +292,11 @@
     <string>8</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum7">
+=======
+  <widget class="QPushButton" name="pb_St2_Num7">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -281,7 +321,11 @@
     <string>7</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbNum0">
+=======
+  <widget class="QPushButton" name="pb_St2_Num0">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -306,7 +350,11 @@
     <string>0</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QLabel" name="lblTimeRemaining">
+=======
+  <widget class="QLabel" name="lbl_St4_TimeRemaining">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -340,7 +388,11 @@
     <bool>false</bool>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QLabel" name="lblDisplayPrinterNumber">
+=======
+  <widget class="QLabel" name="lbl_St1_DisplayPrinterNumber">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -371,7 +423,11 @@
     <bool>false</bool>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbStartPrint">
+=======
+  <widget class="QPushButton" name="pb_St1_StartPrint">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -405,7 +461,11 @@
 by clicking me!</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbCancelPrint">
+=======
+  <widget class="QPushButton" name="pb_St4_CancelPrint">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -438,7 +498,11 @@ by clicking me!</string>
     <string>Cancel Print</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QLabel" name="lblStudentOrPersonnelID">
+=======
+  <widget class="QLabel" name="lbl_St4_StudentOrPersonnelID">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -469,7 +533,11 @@ by clicking me!</string>
     <bool>false</bool>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbBackSpace">
+=======
+  <widget class="QPushButton" name="pb_St2_BackSpace">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -494,7 +562,11 @@ by clicking me!</string>
     <string>&lt;-</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPushButton" name="pbEnter">
+=======
+  <widget class="QPushButton" name="pb_St2_Enter">
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -519,6 +591,309 @@ by clicking me!</string>
     <string>Enter</string>
    </property>
   </widget>
+<<<<<<< HEAD
+=======
+  <widget class="QPushButton" name="pb_St5_Enter">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>330</y>
+     <width>111</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Enter</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num8">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>270</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>8</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_BackSpace">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>150</y>
+     <width>71</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;-</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num6">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>210</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>6</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num3">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>150</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>3</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num7">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>270</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>7</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num0">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>330</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num2">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>150</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>2</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num9">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>270</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>9</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num1">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>150</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num5">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>210</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_St5_Num4">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>210</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OCR A Extended</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>4</string>
+   </property>
+  </widget>
+>>>>>>> 3a1cfdbd1379ed174bd7ab9c0bf0eb90f2d5e359
  </widget>
  <resources/>
  <connections/>
