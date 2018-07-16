@@ -102,3 +102,7 @@ ENV/
 # test_files
 printer_que/tests/*.csv
 printer_que/tests/*.txt
+
+#Files created during runtime
+printer_que/*.csv
+printer_que/*.txt
