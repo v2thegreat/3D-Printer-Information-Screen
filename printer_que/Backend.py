@@ -8,10 +8,12 @@ from time import time, sleep
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 #Importing default values
-from defaults import DEFAULT_TEXT_lbl_St2_StudentIDDisplay, DEFAULT_TEXT_lbl_St5_StudentOrPersonnelID, nothingFunc, HIDE_DISPLAY_TIME, STUDENT_ID_INCORRECT_MESSAGE, STUDENT_ID_OR_PERSONNEL_ID_INCORRECT_MESSAGE, DEFAULT_DATE_FORMAL, DEFAULT_TEXT_FORMAT, DEFAULT_CSV_FORMAT
-from Personnel import Personnel
+from Personnel import *
+from Defaults.defaultLabels import *
+from Defaults.Misc_Defaults import nothingFunc
 
 #NOTE: MOST DOCUMENTATION HAS BEEN TAKEN FROM MY OWN OLDER CODE, AND MAYBE INACCURATE. WHILE I AM DOING MY BEST TO ENSURE THAT IT IS ALL UPTO DATE, THE USER SHOULD STILL BE WEARY. FURTHER, THIS MAY ALSO HAVE BUGS
+
 
 class Backend:
     def __init__(self, GUI_Controller, Dialog):

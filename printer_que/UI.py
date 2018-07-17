@@ -7,13 +7,16 @@
 # WARNING! All changes made in this file will be lost!
 
 """
-TODO: 
+TODO:
     Add "go back" button to stage 5
     Give more height to all labels, to accomodate for the new font
     make the UI in stage 5 more simple/tell them clearly what's going on
 """
 from PyQt5 import QtCore, QtGui, QtWidgets
-from defaults import *
+
+from Defaults.defaultStyleSheets import *
+from Defaults.defaultLabels import *
+from Defaults.defaultFonts import *
 
 class PrinterUI(object):
     def setupUi(self, Dialog):
@@ -465,7 +468,6 @@ def run():
     ui = PrinterUI()
     ui.setupUi(Dialog)
     Dialog.show()
-    sys.exit()
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
