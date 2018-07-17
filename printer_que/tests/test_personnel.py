@@ -13,7 +13,7 @@ from unittest import TestCase, main
 import sys
 sys.path.append('../')
 
-from Personnel import Personnel
+from Personnel import Personnel, PERSONNEL_INFO_CSV, PERSONNEL_INFO_TXT
 from defaults import *
 
 class test_Personnel(TestCase):
@@ -43,7 +43,7 @@ class test_Personnel(TestCase):
         """
         self.personnel1 = Personnel('John Wick', '1300135')        #Yes, it's immature, but growing up is for old people
         self.personnel2 = Personnel('Alan Wolf', '1300134')
-
+        self.PERSONNEL_INFO_TXT = 'Test Personnel Info.txt'
 
     def tearDown(self):
         """
@@ -74,9 +74,9 @@ class test_Personnel(TestCase):
                 Check if all pins are present in the file
                 Check if any pins that are not present are in the file or not
         """
-        assert Personnel.isPinPresent('1300135')
-        assert Personnel.isPinPresent('1300134')
-        assert not Personnel.isPinPresent('1300133')
+        assert Personnel.isPinPresent('1300135', personnel_list_file=self.PERSONNEL_INFO_TXT)
+        assert Personnel.isPinPresent('1300134', personnel_list_file=self.PERSONNEL_INFO_TXT)
+        assert not Personnel.isPinPresent('1300133', personnel_list_file=self.PERSONNEL_INFO_TXT)
 
 
     def test_constructor(self):

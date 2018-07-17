@@ -78,12 +78,13 @@ class Personnel(object):
         hashed_pin = Personnel._getHash(pin)
         try:
             with open(personnel_list_file, 'rb') as file_object:
-                return CheckInFile(file_object, hashed_pin)
-        except:
+                return Personnel.CheckInFile(file_object, hashed_pin)
+        except FileNotFoundError:
+            print('File Not Found, returning False')
             return False
 
     @staticmethod
-    def CheckInFile(self, file_object, hashed_pin):
+    def CheckInFile(file_object, hashed_pin):
         while True:
             try:
                 user_details = pickle.load(file_object)
@@ -121,10 +122,7 @@ def main():
         try:
             name = input('Enter the new personnel name: ')
             pin = input('Enter the new personnel pin: ')
-            # name = 'Ali Abbas'
-            # pin = '4000'
             Personnel.addNewPersonnel(name, pin)
-            break
         except IndexError:
             continue
 
