@@ -1,8 +1,4 @@
-# TODO
-
-- Add functionality after the dialog comes back
-	- Remove the ID after from the student label
-	- Remove the Student label or modify it to show the time remaining for the print time
-
-- Find a way to calculate time remaining --(ask pavel again?)
-	- run a timer to go back to the default state after the timer runs out
+TODO:
+* Add "go back" button to stage 5
+* Give more height to all labels, to accomodate for the new font
+* make the UI in stage 5 more simple/tell them clearly what's going on
