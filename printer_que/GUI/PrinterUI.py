@@ -3,7 +3,7 @@ import sys
 try:
     from PyQtUI import UI
 
-except ModuleNotFoundError:
+except ImportError:
     from GUI.PyQtUI import UI
 
 from PyQt5 import QtCore, QtWidgets
@@ -86,7 +86,7 @@ class PrinterUI(UI):
             ]
 
             self.stage6Widgets = []
-        
+
         except AttributeError:
             self._setGUI()
             self._setStageWidgets()
