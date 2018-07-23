@@ -12,11 +12,14 @@ from Personnel import *
 from Defaults.defaultLabels import *
 from Defaults.Misc_Defaults import nothingFunc
 
+from GUI.PrinterUI import PrinterUI
+
 #NOTE: MOST DOCUMENTATION HAS BEEN TAKEN FROM MY OWN OLDER CODE, AND MAYBE INACCURATE. WHILE I AM DOING MY BEST TO ENSURE THAT IT IS ALL UPTO DATE, THE USER SHOULD STILL BE WEARY. FURTHER, THIS MAY ALSO HAVE BUGS
 
 
-class Backend:
-    def __init__(self, GUI_Controller, Dialog):
+class Backend(PrinterUI):
+
+    def __init__(self):
         """
         Args:
             GUI_Controller: QtWidgets.QDialog
@@ -25,26 +28,37 @@ class Backend:
 
                 This means that any changes done to this can affect the UI and can change or control functionality
         """
-        print('Finished PyQt5 setup')
+        self._setGUI()
+        self._setFlags()
+        self.__setup()
+
+
+    def _setFlags(self):    #setup
+        print('Setting Flags')
         self.INCORRECT_STUDENT_ID_FLAG = False
         self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG = False
-        self.GUI_Controller = GUI_Controller
-        self.GUI_Dialog = Dialog
+        print('Flags Set')
+
+
+    def __setup(self):  #setup
+        print('Finished PyQt5 setup')
         print('Finished initializing backend')
         self._settingFunctionality()
         self._displayStage(0)
 
-    def _setBlankScreen(self):
+
+    def _setBlankScreen(self):  #GUI Function --Dependency: PrinterUI Class
         """
         Function to hide all the widgets, to enable a "blank screen"
             It does so by going into all the stages widgets and running their hide functions
         """
         print('Hid all widgets')
-        for widgetLst in self.GUI_Controller.stages:
+        for widgetLst in self.stages:
             for widget in widgetLst:
                 widget.hide()
 
-    def _settingFunctionality(self):
+
+    def _settingFunctionality(self):    #setup GUI Button Function --Dependency: PrinterUI Class
         """
         Setting functionality
             This means that I'm assigning all the functions that each button and label press needs to call when I click on something
@@ -60,8 +74,8 @@ class Backend:
 
             Upon clicking the start button, stage 2 is displayed
         """
-        self.GUI_Controller.pb_St1_StartPrint.clicked.connect(lambda: self._displayStage(1))
-        self.GUI_Controller.lbl_St1_DisplayPrinterNumber.mousePressEvent = nothingFunc
+        self.pb_St1_StartPrint.clicked.connect(lambda: self._displayStage(1))
+        self.lbl_St1_DisplayPrinterNumber.mousePressEvent = nothingFunc
         print('Stage-1 functionality set')
 
         #Setting Stage 2 functionality
@@ -76,19 +90,19 @@ class Backend:
 
             Note: Each user's ID is saved into the machine for logs and keeping track of which programs tend to use it more
         """
-        self.GUI_Controller.pb_St2_Num0.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num0))
-        self.GUI_Controller.pb_St2_Num1.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num1))
-        self.GUI_Controller.pb_St2_Num2.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num2))
-        self.GUI_Controller.pb_St2_Num3.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num3))
-        self.GUI_Controller.pb_St2_Num4.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num4))
-        self.GUI_Controller.pb_St2_Num5.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num5))
-        self.GUI_Controller.pb_St2_Num6.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num6))
-        self.GUI_Controller.pb_St2_Num7.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num7))
-        self.GUI_Controller.pb_St2_Num8.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num8))
-        self.GUI_Controller.pb_St2_Num9.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Controller.pb_St2_Num9))
-        self.GUI_Controller.pb_St2_BackSpace.clicked.connect(lambda: self.removeDigit(self.GUI_Controller.lbl_St2_StudentIDDisplay))
-        self.GUI_Controller.pb_St2_Enter.clicked.connect(lambda: self.digitEntered(self.GUI_Controller.lbl_St2_StudentIDDisplay, self.GUI_Dialog))
-        self.GUI_Controller.lbl_St2_StudentIDDisplay.mousePressEvent = nothingFunc
+        self.pb_St2_Num0.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num0))
+        self.pb_St2_Num1.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num1))
+        self.pb_St2_Num2.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num2))
+        self.pb_St2_Num3.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num3))
+        self.pb_St2_Num4.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num4))
+        self.pb_St2_Num5.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num5))
+        self.pb_St2_Num6.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num6))
+        self.pb_St2_Num7.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num7))
+        self.pb_St2_Num8.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num8))
+        self.pb_St2_Num9.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num9))
+        self.pb_St2_BackSpace.clicked.connect(lambda: self.removeDigit(self.lbl_St2_StudentIDDisplay))
+        self.pb_St2_Enter.clicked.connect(lambda: self.digitEntered(self.lbl_St2_StudentIDDisplay, self.GUI_Dialog))
+        self.lbl_St2_StudentIDDisplay.mousePressEvent = nothingFunc
         print('Stage-2 functionality set')
 
         #Setting Stage 3 functionality
@@ -105,8 +119,8 @@ class Backend:
             This is the stage where the original user or any personnel can choose to cancel the print
             This information is again logged as to who canceled the print
         """
-        self.GUI_Controller.pb_St4_CancelPrint.clicked.connect(lambda: self._displayStage(4))
-        self.GUI_Controller.lbl_St4_TimeRemaining.mousePressEvent = nothingFunc
+        self.pb_St4_CancelPrint.clicked.connect(lambda: self._displayStage(4))
+        self.lbl_St4_TimeRemaining.mousePressEvent = nothingFunc
         print('Stage-4 functionality set')
 
         #Setting Stage 5 functionality
@@ -114,19 +128,19 @@ class Backend:
         Stage 5:
             This is the stage where the user/personnel enter's the ID or pin to authorize the prints, and to view who enabled the print to be cancled (This information is recorded)
         """
-        self.GUI_Controller.pb_St5_Num0.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num0))
-        self.GUI_Controller.pb_St5_Num1.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num1))
-        self.GUI_Controller.pb_St5_Num2.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num2))
-        self.GUI_Controller.pb_St5_Num3.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num3))
-        self.GUI_Controller.pb_St5_Num4.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num4))
-        self.GUI_Controller.pb_St5_Num5.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num5))
-        self.GUI_Controller.pb_St5_Num6.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num6))
-        self.GUI_Controller.pb_St5_Num7.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num7))
-        self.GUI_Controller.pb_St5_Num8.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num8))
-        self.GUI_Controller.pb_St5_Num9.clicked.connect(lambda: self.addDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Controller.pb_St5_Num9))
-        self.GUI_Controller.pb_St5_BackSpace.clicked.connect(lambda: self.removeDigit(self.GUI_Controller.lbl_St5_StudentOrPersonnelID))
-        self.GUI_Controller.pb_St5_Enter.clicked.connect(lambda: self.digitEnteredForPersonnel(self.GUI_Controller.lbl_St5_StudentOrPersonnelID, self.GUI_Dialog))
-        self.GUI_Controller.lbl_St5_StudentOrPersonnelID.mousePressEvent = nothingFunc
+        self.pb_St5_Num0.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num0))
+        self.pb_St5_Num1.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num1))
+        self.pb_St5_Num2.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num2))
+        self.pb_St5_Num3.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num3))
+        self.pb_St5_Num4.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num4))
+        self.pb_St5_Num5.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num5))
+        self.pb_St5_Num6.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num6))
+        self.pb_St5_Num7.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num7))
+        self.pb_St5_Num8.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num8))
+        self.pb_St5_Num9.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num9))
+        self.pb_St5_BackSpace.clicked.connect(lambda: self.removeDigit(self.lbl_St5_StudentOrPersonnelID))
+        self.pb_St5_Enter.clicked.connect(lambda: self.digitEnteredForPersonnel(self.lbl_St5_StudentOrPersonnelID, self.GUI_Dialog))
+        self.lbl_St5_StudentOrPersonnelID.mousePressEvent = nothingFunc
         print('Stage-5 functionality set')
 
         #Setting Stage 6 functionality
@@ -140,26 +154,28 @@ class Backend:
         print('Stage-6 functionality set')
         print('Functionality of all widgets set')
 
-    def _displayStage(self, stageNumber):
+
+    def _displayStage(self, stageNumber):   #GUI Function --Dependency: PrinterUI Class
         """
         Args:
             stageNumber (:int:): Index value used to tell which stage is to be made visible
 
         Hides all widgets that are on screen
-        Loops through each widget in the stage given by self.GUI_Controller.stages[stageNumber] and makes it visible
+        Loops through each widget in the stage given by self.stages[stageNumber] and makes it visible
 
-        Note: For clarity; self.GUI_Controller.stages is a 2D array that contains the widgets of all the stages, which are set in order, and can be picked out via their indexes (which is what we do here)
+        Note: For clarity; self.stages is a 2D array that contains the widgets of all the stages, which are set in order, and can be picked out via their indexes (which is what we do here)
         """
         self._setBlankScreen()
         print('Starting display for stage-{} widgets'.format(stageNumber+1))
 
-        for widget in self.GUI_Controller.stages[stageNumber]:
+        for widget in self.stages[stageNumber]:
             widget.show()
 
         print('Displaying stage-{} widgets'.format(stageNumber+1))
 
+
     @staticmethod
-    def _setIncorrectLabelToDefault(studentIDLabel, FLAG, DEFAULT_TEXT):
+    def _setIncorrectLabelToDefault(studentIDLabel, FLAG, DEFAULT_TEXT):    #Higher Level GUI Function --Dependency: None
         """
         Args:
             studentIDLabel      (:QLabel:   QtWidgets.QLabel): A QLabel object which needs to be reset)
@@ -173,21 +189,26 @@ class Backend:
         """
         if FLAG:
             studentIDLabel.setText(DEFAULT_TEXT)
+
         return False
 
+
     @staticmethod
-    def setStudentIDLabelAsErrorLabel(studentIDLabel, INCORRECT_MESSAGE = None):
+    def setStudentIDLabelAsErrorLabel(studentIDLabel, INCORRECT_MESSAGE = None):    #Higher Level GUI Function --Dependency: None
         """
         Args:
             studentIDLabel      (:QLabel:   QtWidgets.QLabel): A QLabel object which needs to be have it's text set to INCORRECT_MESSAGE)
-            INCORRECT_MESSAGE   (:str:      This is the string has the incorrect message. If no incorrect message is found, the default one is used)
+            INCORRECT_MESSAGE   (:str:): This is the string has the incorrect message. If no incorrect message is found, the default one is used)
+
+
         """
         INCORRECT_MESSAGE = STUDENT_ID_INCORRECT_MESSAGE if INCORRECT_MESSAGE == None else INCORRECT_MESSAGE
 
         studentIDLabel.setText(INCORRECT_MESSAGE)
         return True
 
-    def addDigit(self, studentIDLabel, btn):
+
+    def addDigit(self, studentIDLabel, btn):    #GUI Button Function --Dependency: PrinterUI Class, Backend._setIncorrectLabelToDefault, Backend._isAddDigit, Backend._addText
         """
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
@@ -200,28 +221,32 @@ class Backend:
         if Backend._isAddDigit(studentIDLabel):
             Backend._addText(studentIDLabel, btn)
 
+
     @staticmethod
-    def _isAddDigit(studentIDLabel):
+    def _isAddDigit(studentIDLabel):    #Higher Level GUI Function --Dependency: Backend._getStdID
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
+
         Checks if the length of the student ID is less than 8 characters
         """
         return len(Backend._getStdID(studentIDLabel)) < 8
 
+
     @staticmethod
-    def _getStdID(studentIDLabel):
+    def _getStdID(studentIDLabel):  #Higher Level GUI Function --Dependency: None
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
-        returns the student ID from the student ID
+        returns the student ID from the student ID label
 
         Also has an exception for when the label is incorrect
         """
         return studentIDLabel.text().split(':')[1].strip()
 
+
     @staticmethod
-    def _addText(studentIDLabel, btn):
+    def _addText(studentIDLabel, btn):  #Higher Level GUI Function  --Dependency: Backend._getAddDigit
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
@@ -230,8 +255,9 @@ class Backend:
         """
         studentIDLabel.setText(Backend._getAddDigit(studentIDLabel, btn))
 
+
     @staticmethod
-    def _getAddDigit(*pram):
+    def _getAddDigit(*pram):    #Higher Level GUI Function --Dependency: None
         """
         Args:
             *pram    (:Collection: QtWidgets.QPushButton): List of Buttons
@@ -242,7 +268,8 @@ class Backend:
             string += x.text()
         return string
 
-    def removeDigit(self, studentIDLabel):
+
+    def removeDigit(self, studentIDLabel):      #Higher Level GUI Function --Dependency: Backend._setIncorrectLabelToDefault, Backend._isRemoveDigit, Backend._removeDigit
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
@@ -255,8 +282,9 @@ class Backend:
         if Backend._isRemoveDigit(studentIDLabel):
             Backend._removeDigit(studentIDLabel)
 
+
     @staticmethod
-    def _isRemoveDigit(studentIDLabel):
+    def _isRemoveDigit(studentIDLabel):     #Higher Level GUI Function --Dependency: DEFAULT_TEXT_lbl_St2_StudentIDDisplay
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
@@ -266,8 +294,9 @@ class Backend:
 
         return studentIDLabel.text() != DEFAULT_TEXT_lbl_St2_StudentIDDisplay
 
+
     @staticmethod
-    def _removeDigit(studentIDLabel):
+    def _removeDigit(studentIDLabel):   #Higher Level GUI Function --Dependency: Backend.getRemoveDigit
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
@@ -276,8 +305,9 @@ class Backend:
         """
         studentIDLabel.setText(Backend.getRemoveDigit(studentIDLabel))
 
+
     @staticmethod
-    def getRemoveDigit(studentIDLabel):
+    def getRemoveDigit(studentIDLabel):     #Higher Level GUI Function --Dependency: DEFAULT_TEXT_lbl_St2_StudentIDDisplay
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
@@ -288,7 +318,8 @@ class Backend:
 
         return studentIDLabel.text()[:-1] if studentIDLabel.text() != DEFAULT_TEXT_lbl_St2_StudentIDDisplay else studentIDLabel.text()
 
-    def digitEntered(self, studentIDLabel, Dialog):
+
+    def digitEntered(self, studentIDLabel, Dialog):     #Too Complex, save for later/leave for backend as too many dependencies
         """
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need to get the student ID from
@@ -310,10 +341,12 @@ class Backend:
             studentIDLabel.setText(DEFAULT_TEXT_lbl_St2_StudentIDDisplay)
             self._displayStage(3)
             print('Displayed Stage 3')
+
         else:
             self.INCORRECT_STUDENT_ID_FLAG = Backend.setStudentIDLabelAsErrorLabel(studentIDLabel)
 
-    def digitEnteredForPersonnel(self, studentIDLabel, Dialog):
+
+    def digitEnteredForPersonnel(self, studentIDLabel, Dialog):     #Too Complex, save for later/leave for backend as too many dependencies
         """
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need to get the student ID or personnel pin from
@@ -332,15 +365,17 @@ class Backend:
             self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG = Backend.setStudentIDLabelAsErrorLabel(
                 studentIDLabel, STUDENT_ID_OR_PERSONNEL_ID_INCORRECT_MESSAGE)
 
+
     @staticmethod
-    def saveCancelRecord(studentIDLabel):
+    def saveCancelRecord(studentIDLabel):   #Saving/Backend Function --Dependency:  Backend._getSavingTextFormat
         """
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need to use to save the user's ID or the personnel pin from
         """
         open('Save Cancel Records.txt', 'a').write(Backend._getSavingTextFormat(studentIDLabel))
 
-    def isSameID(self, studentIDLabel):
+
+    def isSameID(self, studentIDLabel):     #Saving/Backend Function --Dependency:  Backend._getStdID
         """
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need to use to check if the student's ID is the same as the one used to setup the print
@@ -350,7 +385,8 @@ class Backend:
         """
         return self.lastIDUsed == Backend._getStdID(studentIDLabel)
 
-    def isCorrectPersonnelIDorStdID(self, studentIDLabel):
+
+    def isCorrectPersonnelIDorStdID(self, studentIDLabel):  #Saving/Backend Function --Dependency:  self.isSameID, Backend.isPersonnelPinCorrect, Backend._getStdID
         """
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID or personnel pin that we need to verify the password
@@ -358,14 +394,16 @@ class Backend:
         """
         return self.isSameID(studentIDLabel) or Backend.isPersonnelPinCorrect(Backend._getStdID(studentIDLabel))
 
+
     @staticmethod
-    def isPersonnelPinCorrect(pin):
+    def isPersonnelPinCorrect(pin):     #Backend Function --Dependency: Personnel.isPinPresent --Possible Change: Inherit Personnel Class
         try:
             return Personnel.isPinPresent(pin)
         except FileNotFoundError:
             return False
 
-    def noteID(self, studentIDLabel):
+
+    def noteID(self, studentIDLabel):      #Backend Function    --Dependency:   Backend._getStdID
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -375,8 +413,9 @@ class Backend:
         """
         self.lastIDUsed = Backend._getStdID(studentIDLabel)
 
+
     @staticmethod
-    def sendDialogBack(Dialog):
+    def sendDialogBack(Dialog):         #GUI Function --Dependency: time.sleep  --Possible Change: change from Dialog to self.Dialog
         """
         Args:
             Dialog      (:QDialog:    QtWidgets.QDialog): Dialog that we'll send to the back until we have to load it back again
@@ -387,8 +426,9 @@ class Backend:
         sleep(HIDE_DISPLAY_TIME)
         Dialog.show()
 
+
     @staticmethod
-    def isCorrectStdID(studentIDLabel):
+    def isCorrectStdID(studentIDLabel):     #Backend Function --Dependency: Backend._getStdID
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -398,8 +438,9 @@ class Backend:
         """
         return len(Backend._getStdID(studentIDLabel)) == 8
 
+
     @staticmethod
-    def saveID(studentIDLabel):
+    def saveID(studentIDLabel):     #Backend Function --Dependency: Backend._saveAsCsv, Backend._saveAsText
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -410,8 +451,9 @@ class Backend:
         Backend._saveAsCsv(studentIDLabel)
         Backend._saveAsText(studentIDLabel)
 
+
     @staticmethod
-    def _saveAsText(studentIDLabel):
+    def _saveAsText(studentIDLabel):    #Backend Function --Dependency: Backend._getSavingTextFormat, savingFormat
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -421,8 +463,9 @@ class Backend:
         savingFormat = Backend._getSavingTextFormat(studentIDLabel)
         open("Print Records.txt", 'a').write(savingFormat)
 
+
     @staticmethod
-    def _getSavingTextFormat(studentIDLabel):
+    def _getSavingTextFormat(studentIDLabel):   #Backend Function --Dependency: DEFAULT_TEXT_FORMAT, Backend._getStdID, datetime.now().strftime, DEFAULT_DATE_FORMAL, time
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -432,8 +475,9 @@ class Backend:
         return DEFAULT_TEXT_FORMAT.format(Backend._getStdID(studentIDLabel),
                             datetime.now().strftime(DEFAULT_DATE_FORMAL), time())
 
+
     @staticmethod
-    def _saveAsCsv(studentIDLabel):
+    def _saveAsCsv(studentIDLabel):     #Backend Function --Dependency: Backend._getSavingCSVFormat, savingFormat
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -443,8 +487,9 @@ class Backend:
         savingFormat = Backend._getSavingCSVFormat(studentIDLabel)
         open('User Log.csv', 'a').write(savingFormat)
 
+
     @staticmethod
-    def _getSavingCSVFormat(studentIDLabel):
+    def _getSavingCSVFormat(studentIDLabel):    #Backend Function --Dependency:DEFAULT_CSV_FORMAT, Backend._getStdID, datetime.now().strftime, DEFAULT_DATE_FORMAL, time
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -454,17 +499,10 @@ class Backend:
         return DEFAULT_CSV_FORMAT.format(Backend._getStdID(studentIDLabel),
                             datetime.now().strftime(DEFAULT_DATE_FORMAL), time())
 
+
 def main():
-    from UI import PrinterUI
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    Dialog.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-    ui = PrinterUI()
-    ui.setupUi(Dialog)
-    backend_obj = Backend(ui, Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+    Backend().show()
+
 
 if __name__ == '__main__':
     main()
