@@ -11,8 +11,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Personnel import *
 from Defaults.defaultLabels import *
 from Defaults.Misc_Defaults import nothingFunc
+from Defaults.defaultFormats import *
+from Defaults.Misc_Defaults import *
 
+#Importing GUI
 from GUI.PrinterUI import PrinterUI
+
 
 #NOTE: MOST DOCUMENTATION HAS BEEN TAKEN FROM MY OWN OLDER CODE, AND MAYBE INACCURATE. WHILE I AM DOING MY BEST TO ENSURE THAT IT IS ALL UPTO DATE, THE USER SHOULD STILL BE WEARY. FURTHER, THIS MAY ALSO HAVE BUGS
 
@@ -101,7 +105,7 @@ class Backend(PrinterUI):
         self.pb_St2_Num8.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num8))
         self.pb_St2_Num9.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num9))
         self.pb_St2_BackSpace.clicked.connect(lambda: self.removeDigit(self.lbl_St2_StudentIDDisplay))
-        self.pb_St2_Enter.clicked.connect(lambda: self.digitEntered(self.lbl_St2_StudentIDDisplay, self.GUI_Dialog))
+        self.pb_St2_Enter.clicked.connect(lambda: self.digitEntered(self.lbl_St2_StudentIDDisplay, self.Dialog))
         self.lbl_St2_StudentIDDisplay.mousePressEvent = nothingFunc
         print('Stage-2 functionality set')
 
@@ -139,7 +143,7 @@ class Backend(PrinterUI):
         self.pb_St5_Num8.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num8))
         self.pb_St5_Num9.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num9))
         self.pb_St5_BackSpace.clicked.connect(lambda: self.removeDigit(self.lbl_St5_StudentOrPersonnelID))
-        self.pb_St5_Enter.clicked.connect(lambda: self.digitEnteredForPersonnel(self.lbl_St5_StudentOrPersonnelID, self.GUI_Dialog))
+        self.pb_St5_Enter.clicked.connect(lambda: self.digitEnteredForPersonnel(self.lbl_St5_StudentOrPersonnelID, self.Dialog))
         self.lbl_St5_StudentOrPersonnelID.mousePressEvent = nothingFunc
         print('Stage-5 functionality set')
 
