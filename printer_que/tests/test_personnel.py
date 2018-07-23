@@ -14,7 +14,6 @@ import sys
 sys.path.append('../')
 
 from Personnel import Personnel, PERSONNEL_INFO_CSV, PERSONNEL_INFO_TXT
-from defaults import *
 
 class test_Personnel(TestCase):
     """
