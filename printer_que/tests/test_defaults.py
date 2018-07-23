@@ -7,7 +7,13 @@ These are the unit tests for the defaults, to ensure that they exist and that th
 from unittest import TestCase, main
 import sys
 sys.path.append('../')
-from defaults import *
+
+from Defaults.defaultLabels import *
+from Defaults.defaultFonts import *
+from Defaults.defaultFormats import *
+from Defaults.defaults import *
+from Defaults.defaultStyleSheets import *
+from Defaults.Misc_Defaults import *
 
 class test_Defaults(TestCase):
     """
