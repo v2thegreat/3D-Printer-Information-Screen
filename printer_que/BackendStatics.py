@@ -7,15 +7,16 @@ from time import time, sleep
 
 # Import Personnel files
 from Personnel import Personnel
+
 # Import defaults
 from Defaults.defaultFormats import DEFAULT_DATE_FORMAT, DEFAULT_TEXT_FORMAT, DEFAULT_CSV_FORMAT
 from Defaults.defaultLabels import *
 from Defaults.Misc_Defaults import HIDE_DISPLAY_TIME, STUDENT_ID_INCORRECT_MESSAGE
 
+
 class BackendStatics(object):
     @staticmethod
-    def _setIncorrectLabelToDefault(student_id_label, FLAG, DEFAULT_TEXT):
-        #Higher Level GUI Function --Dependency: None
+    def _setIncorrectLabelToDefault(student_id_label, FLAG, DEFAULT_TEXT):  #Higher Level GUI Function --Dependency: None
         """
         Args:
             studentIDLabel      (:QLabel:   QtWidgets.QLabel): A QLabel object which needs to be reset)
@@ -34,8 +35,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def setStudentIDLabelAsErrorLabel(studentIDLabel, INCORRECT_MESSAGE=None):
-        #Higher Level GUI Function --Dependency: None
+    def setStudentIDLabelAsErrorLabel(studentIDLabel, INCORRECT_MESSAGE=None):  #Higher Level GUI Function --Dependency: None
         """
         Args:
             studentIDLabel      (:QLabel:   QtWidgets.QLabel): A QLabel object which needs to be have it's text set to INCORRECT_MESSAGE)
@@ -50,8 +50,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _isAddDigit(studentIDLabel):
-        #Higher Level GUI Function --Dependency: BackendStatics._getStdID
+    def _isAddDigit(studentIDLabel):    #Higher Level GUI Function --Dependency: BackendStatics._getStdID
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
@@ -62,8 +61,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _getStdID(studentIDLabel):
-        #Higher Level GUI Function --Dependency: None
+    def _getStdID(studentIDLabel):  #Higher Level GUI Function --Dependency: None
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
@@ -77,8 +75,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _addText(studentIDLabel, btn):
-        #Higher Level GUI Function  --Dependency: BackendStatics._getAddDigit
+    def _addText(studentIDLabel, btn):  #Higher Level GUI Function  --Dependency: BackendStatics._getAddDigit
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
@@ -89,8 +86,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _getAddDigit(*pram):
-        #Higher Level GUI Function --Dependency: None
+    def _getAddDigit(*pram):    #Higher Level GUI Function --Dependency: None
         """
         Args:
             *pram    (:Collection: QtWidgets.QPushButton): List of Buttons
@@ -103,8 +99,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _isRemoveDigit(studentIDLabel):
-        #Higher Level GUI Function --Dependency: DEFAULT_TEXT_lbl_St2_StudentIDDisplay
+    def _isRemoveDigit(studentIDLabel): #Higher Level GUI Function --Dependency: DEFAULT_TEXT_lbl_St2_StudentIDDisplay
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
@@ -116,8 +111,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _removeDigit(studentIDLabel):
-        #Higher Level GUI Function --Dependency: BackendStatics.getRemoveDigit
+    def _removeDigit(studentIDLabel):   #Higher Level GUI Function --Dependency: BackendStatics.getRemoveDigit
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
@@ -128,8 +122,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def getRemoveDigit(studentIDLabel):
-        #Higher Level GUI Function --Dependency: DEFAULT_TEXT_lbl_St2_StudentIDDisplay
+    def getRemoveDigit(studentIDLabel): #Higher Level GUI Function --Dependency: DEFAULT_TEXT_lbl_St2_StudentIDDisplay
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
@@ -142,8 +135,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def saveCancelRecord(studentIDLabel):
-        #Saving/BackendStatics.Function --Dependency:  BackendStatics._getSavingTextFormat
+    def saveCancelRecord(studentIDLabel):   #Saving/BackendStatics.Function --Dependency:  BackendStatics._getSavingTextFormat
         """
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need to use to save the user's ID or the personnel pin from
@@ -152,17 +144,25 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def isPersonnelPinCorrect(pin):
-        #BackendStatics.Function --Dependency: Personnel.isPinPresent --Possible Change: Inherit Personnel Class
+    def isPersonnelPinCorrect(pin): #BackendStatics.Function --Dependency: Personnel.isPinPresent --Possible Change: Inherit Personnel Class
+        """
+        Args:
+            pin     (int/str):    pin that system needs to check against
+
+        function returns Personnel.isPinPresent return value to check if the pin is correct or not
+
+        if a FileNotFoundError is raised, it returns False as well as prints an error message
+            In this situation, ensure that there are personnel present
+        """
         try:
             return Personnel.isPinPresent(pin)
         except FileNotFoundError:
+            print('Personnel File is not present, returning False')
             return False
 
 
     @staticmethod
-    def sendDialogBack(Dialog):
-        #GUI Function --Dependency: time.sleep  --Possible Change: change from Dialog to self.Dialog
+    def sendDialogBack(Dialog): #GUI Function --Dependency: time.sleep  --Possible Change: change from Dialog to self.Dialog
         """
         Args:
             Dialog      (:QDialog:    QtWidgets.QDialog): Dialog that we'll send to the back until we have to load it back again
@@ -175,8 +175,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def isCorrectStdID(studentIDLabel):
-        #BackendStatics.Function --Dependency: BackendStatics._getStdID
+    def isCorrectStdID(studentIDLabel): #BackendStatics.Function --Dependency: BackendStatics._getStdID
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -188,8 +187,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def saveID(studentIDLabel):
-        #BackendStatics.Function --Dependency: BackendStatics._saveAsCsv, BackendStatics._saveAsText
+    def saveID(studentIDLabel): #BackendStatics.Function --Dependency: BackendStatics._saveAsCsv, BackendStatics._saveAsText
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -202,8 +200,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _saveAsText(studentIDLabel):
-        #BackendStatics.Function --Dependency: BackendStatics._getSavingTextFormat, savingFormat
+    def _saveAsText(studentIDLabel):    #BackendStatics.Function --Dependency: BackendStatics._getSavingTextFormat, savingFormat
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -215,8 +212,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _getSavingTextFormat(studentIDLabel):
-        #BackendStatics.Function --Dependency: DEFAULT_TEXT_FORMAT, BackendStatics._getStdID, datetime.now().strftime, DEFAULT_DATE_FORMAT, time
+    def _getSavingTextFormat(studentIDLabel):   #BackendStatics.Function --Dependency: DEFAULT_TEXT_FORMAT, BackendStatics._getStdID, datetime.now().strftime, DEFAULT_DATE_FORMAT, time
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -228,8 +224,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _saveAsCsv(studentIDLabel):
-        #BackendStatics.Function --Dependency: BackendStatics._getSavingCSVFormat, savingFormat
+    def _saveAsCsv(studentIDLabel): #BackendStatics.Function --Dependency: BackendStatics._getSavingCSVFormat, savingFormat
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -241,8 +236,7 @@ class BackendStatics(object):
 
 
     @staticmethod
-    def _getSavingCSVFormat(studentIDLabel):
-        #BackendStatics.Function --Dependency:DEFAULT_CSV_FORMAT, BackendStatics._getStdID, datetime.now().strftime, DEFAULT_DATE_FORMAT, time
+    def _getSavingCSVFormat(studentIDLabel):    #BackendStatics.Function --Dependency:DEFAULT_CSV_FORMAT, BackendStatics._getStdID, datetime.now().strftime, DEFAULT_DATE_FORMAT, time
         """
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need
@@ -251,5 +245,3 @@ class BackendStatics(object):
         """
         return DEFAULT_CSV_FORMAT.format(BackendStatics._getStdID(studentIDLabel),
                                          datetime.now().strftime(DEFAULT_DATE_FORMAT), time())
-
-
