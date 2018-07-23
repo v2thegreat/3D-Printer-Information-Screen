@@ -6,19 +6,25 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+
 """
-TODO:
-    Add "go back" button to stage 5
-    Give more height to all labels, to accomodate for the new font
-    make the UI in stage 5 more simple/tell them clearly what's going on
+This is the output from the PyUIC script that converts the .ui file to Python Code
+
+This code is imported in the PrinterUI module where the stages are sorted
 """
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+import sys
+sys.path.append('../')
 
 from Defaults.defaultStyleSheets import *
 from Defaults.defaultLabels import *
 from Defaults.defaultFonts import *
 
-class PrinterUI(object):
+
+class UI(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(DEFAULT_DIALOG_OBJECT_NAME)
 
@@ -369,7 +375,7 @@ class PrinterUI(object):
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-        self._setStageWidgets()
+
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -405,67 +411,13 @@ class PrinterUI(object):
         self.pb_St5_Num5.setText(_translate(DEFAULT_DIALOG_OBJECT_NAME, DEFAULT_TEXT_pb_St5_Num5))
         self.pb_St5_Num4.setText(_translate(DEFAULT_DIALOG_OBJECT_NAME, DEFAULT_TEXT_pb_St5_Num4))
 
-    def _setStageWidgets(self):
-        self.stage1Widgets = [
-            self.pb_St1_StartPrint,
-            self.lbl_St1_DisplayPrinterNumber
-        ]
-
-        self.stage2Widgets = [
-            self.pb_St2_Num0,
-            self.pb_St2_Num1,
-            self.pb_St2_Num2,
-            self.pb_St2_Num3,
-            self.pb_St2_Num4,
-            self.pb_St2_Num5,
-            self.pb_St2_Num6,
-            self.pb_St2_Num7,
-            self.pb_St2_Num8,
-            self.pb_St2_Num9,
-            self.pb_St2_BackSpace,
-            self.pb_St2_Enter,
-            self.lbl_St2_StudentIDDisplay
-        ]
-
-        self.stage3Widgets = []
-
-        self.stage4Widgets = [
-            self.pb_St4_CancelPrint,
-            self.lbl_St4_TimeRemaining
-        ]
-
-        self.stage5Widgets = [
-            self.pb_St5_Num0,
-            self.pb_St5_Num1,
-            self.pb_St5_Num2,
-            self.pb_St5_Num3,
-            self.pb_St5_Num4,
-            self.pb_St5_Num5,
-            self.pb_St5_Num6,
-            self.pb_St5_Num7,
-            self.pb_St5_Num8,
-            self.pb_St5_Num9,
-            self.pb_St5_BackSpace,
-            self.pb_St5_Enter,
-            self.lbl_St5_StudentOrPersonnelID
-        ]
-
-        self.stage6Widgets = []
-
-    @property
-    def stages(self):
-        try:
-            return (self.stage1Widgets, self.stage2Widgets, self.stage3Widgets, self.stage4Widgets, self.stage5Widgets, self.stage6Widgets)
-        except AttributeError:
-            self._setStageWidgets()
-            return (self.stage1Widgets, self.stage2Widgets, self.stage3Widgets, self.stage4Widgets, self.stage5Widgets, self.stage6Widgets)
 
 def run():
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
     Dialog.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-    ui = PrinterUI()
+    ui = UI()
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
