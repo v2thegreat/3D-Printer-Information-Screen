@@ -6,3 +6,4 @@ TODO:
 * make the UI in stage 5 more simple/tell them clearly what's going on
 * Add tests for `PrinterUI` to ensure that it sets the stages correctly
 * Add custom theme support!
+* Bug report - enter an incorrect student ID - can erase the error message! The other keys give silent errors also
