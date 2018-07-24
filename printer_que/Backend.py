@@ -204,7 +204,6 @@ class Backend(PrinterUI, BackendStatics):
             Backend._removeDigit(studentIDLabel)
 
 
-
     def digitEntered(self, studentIDLabel, Dialog):     #Too Complex, save for later/leave for backend as too many dependencies
         """
         Args:
