@@ -49,8 +49,12 @@ class test_BackendStatics(TestCase):
         self.test_label_text = 'Test Label'
         self.test_label.setText(self.test_label_text)
 
-    def reset_Label(self):
-        self.test_label.setText(self.test_label_text)
+    def reset_Label(self, otherLabel = None):
+        if otherLabel == None:
+            self.test_label.setText(self.test_label_text)
+
+        else:
+            self.test_label.setText(otherLabel)
 
     def tearDown(self):
         pass
