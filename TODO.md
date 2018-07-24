@@ -7,7 +7,7 @@ TODO:
 * Add tests for `PrinterUI` to ensure that it sets the stages correctly
 * Add custom theme support!
 * Bug report - enter an incorrect student ID - can erase the error message! The other keys give silent errors also
-    * Elaborate?
+    * Nvm, found it, will take precautions to prevent it
 
 * Write tests for BackendStatics
 * Consider breaking BackendStatics into smaller parts
