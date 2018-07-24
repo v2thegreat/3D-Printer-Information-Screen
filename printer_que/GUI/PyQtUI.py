@@ -412,7 +412,7 @@ class UI(object):
         self.pb_St5_Num4.setText(_translate(DEFAULT_DIALOG_OBJECT_NAME, DEFAULT_TEXT_pb_St5_Num4))
 
 
-def run():
+def main():
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
@@ -423,4 +423,4 @@ def run():
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
-    run()
+    main()

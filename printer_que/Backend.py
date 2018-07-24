@@ -6,7 +6,7 @@ import warnings
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Defaults.Misc_Defaults import nothingFunc
 
-#Importing statics
+#Importing basefunctions
 from BackendStatics import *
 
 #Imoporting defaults
@@ -174,7 +174,6 @@ class Backend(PrinterUI, BackendStatics):
             widget.show()
 
         print('Displaying stage-{} widgets'.format(stageNumber+1))
-
 
 
     def addDigit(self, studentIDLabel, btn):    #GUI Button Function --Dependency: PrinterUI Class, Backend._setIncorrectLabelToDefault, Backend._isAddDigit, Backend._addText
