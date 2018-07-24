@@ -104,10 +104,18 @@ class BackendStatics(object):
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
 
-        Checks if the studentIDLabel is the same as the default text for the same label
+        Checks the following things:
+            - if the studentIDLabel is the same as DEFAULT_TEXT_lbl_St2_StudentIDDisplay
+            - if the studentIDLabel is the same as DEFAULT_TEXT_lbl_St5_StudentOrPersonnelID
+            - if the last character is a space character (' ')
+            - if the last character is a colon character (':')
         """
 
-        return studentIDLabel.text() != DEFAULT_TEXT_lbl_St2_StudentIDDisplay
+        isStdLabelTextSameAsDefaultStudentIDLabel = studentIDLabel.text() == DEFAULT_TEXT_lbl_St2_StudentIDDisplay
+        isStdLabelTextSameAsDefaultStudentorPersonnelIDLabel = studentIDLabel.text() == DEFAULT_TEXT_lbl_St5_StudentOrPersonnelID
+        isLastCharacterSpace = studentIDLabel.text()[-1] == ' '
+        isLastCharacterColon = studentIDLabel.text()[-1] == ':'
+        return not (isStdLabelTextSameAsDefaultStudentIDLabel or isStdLabelTextSameAsDefaultStudentorPersonnelIDLabel or isLastCharacterSpace or isLastCharacterColon)
 
 
     @staticmethod
