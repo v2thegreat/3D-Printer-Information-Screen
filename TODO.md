@@ -19,4 +19,4 @@
 
 * **Bug report #001** - enter an incorrect student ID - can erase the error message! The other keys give silent errors also
     * **Fix**: Added Additional Checks to make sure that this issue cannot be raised again
-      * **Cause**: At the time of creating `_isRemoveDigit`, I assemed that checking if it was equal to `DEFAULT_TEXT_lbl_St2_StudentIDDisplay` would be enough, need to consider it again
+      * **Cause**: At the time of creating `_isRemoveDigit`, I assumed that checking if it was equal to `DEFAULT_TEXT_lbl_St2_StudentIDDisplay` would be enough, need to consider it again
