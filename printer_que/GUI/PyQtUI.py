@@ -35,6 +35,7 @@ class UI(object):
         Dialog.setFont(font)
         Dialog.setWindowOpacity(1.0)
         Dialog.setStyleSheet(DEFAULT_DIALOG_STYLESHEET)
+        Dialog.setGeometry(0,0, 800, 400)
 
         self.lbl_St2_StudentIDDisplay = QtWidgets.QLabel(Dialog)
         self.lbl_St2_StudentIDDisplay.setEnabled(True)
