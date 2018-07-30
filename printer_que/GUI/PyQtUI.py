@@ -23,19 +23,20 @@ from Defaults.defaultStyleSheets import *
 from Defaults.defaultLabels import *
 from Defaults.defaultFonts import *
 
+from Configs.config import SCREEN_RESOLUTION, STARTUP_POS
 
 class UI(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(DEFAULT_DIALOG_OBJECT_NAME)
 
-        Dialog.resize(800, 400)
+        Dialog.resize(SCREEN_RESOLUTION[0], SCREEN_RESOLUTION[1])
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
         Dialog.setFont(font)
         Dialog.setWindowOpacity(1.0)
         Dialog.setStyleSheet(DEFAULT_DIALOG_STYLESHEET)
-        Dialog.setGeometry(0,0, 800, 400)
+        Dialog.setGeometry(STARTUP_POS[0], STARTUP_POS[1], SCREEN_RESOLUTION[0], SCREEN_RESOLUTION[1])
 
         self.lbl_St2_StudentIDDisplay = QtWidgets.QLabel(Dialog)
         self.lbl_St2_StudentIDDisplay.setEnabled(True)
