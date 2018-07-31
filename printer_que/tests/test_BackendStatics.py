@@ -44,10 +44,12 @@ class test_BackendStatics(TestCase):
         self.app = QtWidgets.QApplication(sys.argv)
         self.Dialog = QtWidgets.QDialog()
 
+
     def setUp_Test_Label(self):
         self.test_label = QtWidgets.QLabel(self.Dialog)
         self.test_label_text = 'Test Label'
         self.test_label.setText(self.test_label_text)
+
 
     def reset_Label(self, otherLabel = None):
         if otherLabel == None:
@@ -56,8 +58,10 @@ class test_BackendStatics(TestCase):
         else:
             self.test_label.setText(otherLabel)
 
+
     def tearDown(self):
         pass
+
 
     def test_setIncorrectLabelToDefault(self):
         self.setUp_Test_Label()
@@ -69,6 +73,7 @@ class test_BackendStatics(TestCase):
             assert False == result
             assert self.test_label.text() == DEFAULT_TEXT if FLAG else 'Test Label'
             self.reset_Label()
+
 
     def test_setStudentIDLabelAsErrorLabel(self):
         self.setUp_Test_Label()
