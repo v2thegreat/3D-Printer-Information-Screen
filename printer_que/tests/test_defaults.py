@@ -93,7 +93,7 @@ class test_Defaults(TestCase):
         - HIDE_DISPLAY_TIME
         - STUDENT_ID_INCORRECT_MESSAGE
         - STUDENT_ID_OR_PERSONNEL_ID_INCORRECT_MESSAGE
-        - DEFAULT_DATE_FORMAL
+        - DEFAULT_DATE_FORMAT
         - DEFAULT_TEXT_FORMAT
         - DEFAULT_CSV_FORMAT
     """
@@ -592,7 +592,7 @@ class test_Defaults(TestCase):
         Test to see if DEFAULT_DATE_FORMAL  exists after being imported
         """
 
-        self.assertTrue("DEFAULT_DATE_FORMAL" in globals().keys())
+        self.assertTrue("DEFAULT_DATE_FORMAT" in globals().keys())
 
     def test_DEFAULT_TEXT_FORMAT (self):
         """
