@@ -22,7 +22,6 @@ class test_Configs(TestCase):
     Note: The Configs package is impoted again and again to ensure that integrity is met when importing again and again
     """
 
-
     def setUp(self):
         pass
 

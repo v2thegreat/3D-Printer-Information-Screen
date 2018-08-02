@@ -17,7 +17,7 @@ class test_BackendStatics(TestCase):
 
     This test is to ensure that all static functions are working as expected
 
-    The following Functions are included:
+    The following functions are included:
 
         - _setIncorrectLabelToDefault
         - setStudentIDLabelAsErrorLabel
