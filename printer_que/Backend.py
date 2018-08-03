@@ -92,16 +92,16 @@ class Backend(PrinterUI, BackendStatics):
 
             Note: Each user's ID is saved into the machine for logs and keeping track of which programs tend to use it more
         """
-        self.pb_St2_Num0.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num0))
-        self.pb_St2_Num1.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num1))
-        self.pb_St2_Num2.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num2))
-        self.pb_St2_Num3.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num3))
-        self.pb_St2_Num4.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num4))
-        self.pb_St2_Num5.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num5))
-        self.pb_St2_Num6.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num6))
-        self.pb_St2_Num7.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num7))
-        self.pb_St2_Num8.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num8))
-        self.pb_St2_Num9.clicked.connect(lambda: self.addDigit(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num9))
+        self.pb_St2_Num0.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num0))
+        self.pb_St2_Num1.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num1))
+        self.pb_St2_Num2.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num2))
+        self.pb_St2_Num3.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num3))
+        self.pb_St2_Num4.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num4))
+        self.pb_St2_Num5.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num5))
+        self.pb_St2_Num6.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num6))
+        self.pb_St2_Num7.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num7))
+        self.pb_St2_Num8.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num8))
+        self.pb_St2_Num9.clicked.connect(lambda: self.addDigitForSt2(self.lbl_St2_StudentIDDisplay, self.pb_St2_Num9))
         self.pb_St2_BackSpace.clicked.connect(lambda: self.removeDigit(self.lbl_St2_StudentIDDisplay))
         self.pb_St2_Enter.clicked.connect(lambda: self.digitEntered(self.lbl_St2_StudentIDDisplay, self.Dialog))
         self.lbl_St2_StudentIDDisplay.mousePressEvent = nothingFunc
@@ -130,16 +130,16 @@ class Backend(PrinterUI, BackendStatics):
         Stage 5:
             This is the stage where the user/personnel enter's the ID or pin to authorize the prints, and to view who enabled the print to be cancled (This information is recorded)
         """
-        self.pb_St5_Num0.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num0))
-        self.pb_St5_Num1.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num1))
-        self.pb_St5_Num2.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num2))
-        self.pb_St5_Num3.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num3))
-        self.pb_St5_Num4.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num4))
-        self.pb_St5_Num5.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num5))
-        self.pb_St5_Num6.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num6))
-        self.pb_St5_Num7.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num7))
-        self.pb_St5_Num8.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num8))
-        self.pb_St5_Num9.clicked.connect(lambda: self.addDigit(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num9))
+        self.pb_St5_Num0.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num0))
+        self.pb_St5_Num1.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num1))
+        self.pb_St5_Num2.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num2))
+        self.pb_St5_Num3.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num3))
+        self.pb_St5_Num4.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num4))
+        self.pb_St5_Num5.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num5))
+        self.pb_St5_Num6.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num6))
+        self.pb_St5_Num7.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num7))
+        self.pb_St5_Num8.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num8))
+        self.pb_St5_Num9.clicked.connect(lambda: self.addDigitForSt5(self.lbl_St5_StudentOrPersonnelID, self.pb_St5_Num9))
         self.pb_St5_BackSpace.clicked.connect(lambda: self.removeDigit(self.lbl_St5_StudentOrPersonnelID))
         self.pb_St5_Enter.clicked.connect(lambda: self.digitEnteredForPersonnel(self.lbl_St5_StudentOrPersonnelID, self.Dialog))
         self.lbl_St5_StudentOrPersonnelID.mousePressEvent = nothingFunc
@@ -176,7 +176,7 @@ class Backend(PrinterUI, BackendStatics):
         print('Displaying stage-{} widgets'.format(stageNumber+1))
 
 
-    def addDigit(self, studentIDLabel, btn):    #GUI Button Function --Dependency: PrinterUI Class, Backend._setIncorrectLabelToDefault, Backend._isAddDigit, Backend._addText
+    def addDigitForSt2(self, studentIDLabel, btn):    #GUI Button Function --Dependency: PrinterUI Class, Backend._setIncorrectLabelToDefault, Backend._isAddDigit, Backend._addText
         """
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
@@ -185,6 +185,20 @@ class Backend(PrinterUI, BackendStatics):
         """
         self.INCORRECT_STUDENT_ID_FLAG = Backend._setIncorrectLabelToDefault(studentIDLabel,
             self.INCORRECT_STUDENT_ID_FLAG, DEFAULT_TEXT_lbl_St2_StudentIDDisplay)
+
+        if Backend._isAddDigit(studentIDLabel):
+            Backend._addText(studentIDLabel, btn)
+
+
+    def addDigitForSt5(self, studentIDLabel, btn):
+        """
+        Args:
+            studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
+            btn                 (:QPushButton:    QtWidgets.QPushButton): A btn who's digits are supposed to be added to the QLabel
+        function to add a digit to the lblStudentIDDisplay
+        """
+        self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG = Backend._setIncorrectLabelToDefault(studentIDLabel,
+            self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG, DEFAULT_TEXT_lbl_St5_StudentOrPersonnelID)
 
         if Backend._isAddDigit(studentIDLabel):
             Backend._addText(studentIDLabel, btn)
@@ -210,11 +224,15 @@ class Backend(PrinterUI, BackendStatics):
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need to get the student ID from
             Dialog              (:QDialog:    QtWidgets.QDialog): Dialog that we'll send to the back to use the octoprint screen with
 
+        Sets the self.INCORRECT_STUDENT_ID_FLAG to return value of _setIncorrectLabelToDefault (False)
+
+
         Checks if the ID is in the correct format
             saves the ID into a text file
             sends the dialog back for some time
         else:
             raises an error
+                The error is managed by setting
         """
         self.INCORRECT_STUDENT_ID_FLAG = Backend._setIncorrectLabelToDefault(studentIDLabel,
             self.INCORRECT_STUDENT_ID_FLAG, DEFAULT_TEXT_lbl_St2_StudentIDDisplay)
@@ -226,7 +244,6 @@ class Backend(PrinterUI, BackendStatics):
             studentIDLabel.setText(DEFAULT_TEXT_lbl_St2_StudentIDDisplay)
             self._displayStage(3)
             print('Displayed Stage 3')
-
         else:
             self.INCORRECT_STUDENT_ID_FLAG = Backend.setStudentIDLabelAsErrorLabel(studentIDLabel)
 
@@ -237,9 +254,10 @@ class Backend(PrinterUI, BackendStatics):
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need to get the student ID or personnel pin from
             Dialog              (:QDialog:    QtWidgets.QDialog): Dialog that we'll send to the back so that we can use the octoprint screen
         """
+        print(self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG)
         self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG = Backend._setIncorrectLabelToDefault(studentIDLabel,
             self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG, DEFAULT_TEXT_lbl_St5_StudentOrPersonnelID)
-
+        print(self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG)
         if self.isCorrectPersonnelIDorStdID(studentIDLabel):
             Backend.saveCancelRecord(studentIDLabel)
             Backend.sendDialogBack(Dialog)
@@ -249,7 +267,6 @@ class Backend(PrinterUI, BackendStatics):
         else:
             self.INCORRECT_STUDENT_OR_PERSONNEL_FLAG = Backend.setStudentIDLabelAsErrorLabel(
                 studentIDLabel, STUDENT_ID_OR_PERSONNEL_ID_INCORRECT_MESSAGE)
-
 
 
     def isSameID(self, studentIDLabel):     #Saving/Backend Function --Dependency:  Backend._getStdID
