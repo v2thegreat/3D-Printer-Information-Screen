@@ -41,6 +41,8 @@ class BackendStatics(object):
             studentIDLabel      (:QLabel:   QtWidgets.QLabel): A QLabel object which needs to be have it's text set to INCORRECT_MESSAGE)
             INCORRECT_MESSAGE   (:str:): This is the string has the incorrect message. If no incorrect message is found, the default one is used)
 
+        Returns:
+            True                 Ensures that flag is set to true
 
         """
         INCORRECT_MESSAGE = STUDENT_ID_INCORRECT_MESSAGE if INCORRECT_MESSAGE is None else INCORRECT_MESSAGE
