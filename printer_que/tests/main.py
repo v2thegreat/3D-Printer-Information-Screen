@@ -7,6 +7,7 @@ from sys import path
 path.append('../')
 from Personnel import Personnel
 
+
 """
 This is main test file where all other tests are imported and run.
 This can be as simple as running it from the consoleself.
