@@ -5,6 +5,8 @@ Unit Tests to ensure that Configs are set properly
 import sys
 sys.path.append('../')
 
+from Configs import config
+
 from unittest import TestCase, main
 
 
