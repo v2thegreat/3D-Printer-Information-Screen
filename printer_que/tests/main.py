@@ -14,11 +14,32 @@ from Personnel import Personnel
 
 """
 This is main test file where all other tests are imported and run.
-This can be as simple as running it from the consoleself.
+This can be as simple as running it from the console it self.
+
+Further, this one tests makes sure the following are working as expected:
+
+    - Packages:
+        - Configs
+        - Defaults
+
+    - Classes:
+        - BackendStatics
+        - Personnel
+
+    - Tests:
+        - test_Config
+        - test_Defaults
+        - test_BackendStatics
+        - test_Personnel
+
 
 Developers Note:
-    Personnel is imported here because of it's reliance on pickle
-        This is a dirty solution but the only one
+    Personnel is imported here because of it's reliance on the pickle module
+        This is a dirty solution to import the original Personnel class, but
+        it's the most reliable one.
+
+        It most likely does this because it needs to ensure that there haven't
+        been any modifications to the original class, but this is just a theory
 """
 
 if __name__ == '__main__':
