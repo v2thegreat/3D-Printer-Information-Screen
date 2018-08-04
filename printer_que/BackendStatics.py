@@ -57,7 +57,8 @@ class BackendStatics(object):
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to add text to it
 
-        Checks if the length of the student ID is less than 8 characters
+        Checks if more characters can be added to the student ID
+            returns true if current characters are less than 8 characters
         """
         return len(BackendStatics._getStdID(studentIDLabel)) < 8
 
@@ -255,3 +256,6 @@ class BackendStatics(object):
         """
         return DEFAULT_CSV_FORMAT.format(BackendStatics._getStdID(studentIDLabel),
                                          datetime.now().strftime(DEFAULT_DATE_FORMAT), time())
+
+if __name__ == '__main__':
+    pass
