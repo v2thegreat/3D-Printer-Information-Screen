@@ -1,9 +1,11 @@
 from random import choice
 from PyQt5 import QtWidgets
 
+def getRandomRange(a,b):
+    return range(choice(range(a,b)))
 
 __nums = [chr(ord('0')+x) for x in range(10)]
-getVals = lambda n:[''.join([choice(__nums) for x in range(choice(range(0, 9)))]) for x in range(len(n))]
+getVals = lambda n:[''.join([choice(__nums) for x in getRandomRange(0, 9)]) for x in range(len(n))]
 
 
 def genNumPushButtons(Dialog):
@@ -14,110 +16,27 @@ def genNumPushButtons(Dialog):
     return possibleNumberPushButtons
 
 # Generated from (https://stackoverflow.com/questions/18834636/random-word-generator-python)
-possibleStudentIDLabels = [
-"Enter your Student ID: ",
-"Enter Student or Personnel ID: ",
-'phenol science: ',
-'lockout swart blew isotope morose: ',
-'mastermind aspartic sparse flocculate: ',
-'Bernardino exceed Indo seaport: ',
-'wildfire scholar zealot acknowledgeable winkle applause rummy Iberia tribunal: ',
-'bop Liverpudlian extricable cycle iridium jazzy death: ',
-'Madrid Monday min ban: ',
-'had Synge narcissus Alton ingrown intone limit: ',
-'spinodal: ',
-'Wichita telemeter: ',
-'Schubert sop azimuth messianic caterpillar Camembert Bragg bowl: ',
-'forgave sycamore Conrad contraption carne: ',
-'adverse oxalic: ',
-'organometallic: ',
-'strawflower: ',
-'change coyote ignominious lugubrious lam middleman antivenin: ',
-'ventral hippie roil nozzle sieve remainder dreamboat malarial south: ',
-'tilth Maloney Vail morphine committed bacon covert auditory Ben: ',
-'nominee moldboard Wu synchrotron sepal: ',
-'gogo Justinian: ',
-'Dodd bewitch crosspoint: ',
-'fennel tabletop geodesic blackberry faze cornerstone Belgium: ',
-'libido tallow Budweiser admire fraction Styx extensible Sandia Lucas: ',
-'castle: ',
-'dagger Midwestern flinty: ',
-'lugubrious: ',
-'hypocritic hydrous starlight knuckle second: ',
-'approximable sixty symbolic centrifugal Ovid dapple: ',
-'mudhole Bartholomew bail anecdote anaerobic: ',
-'petrol depreciable mortar: ',
-'creature legate stance basal protease Aeneas styli: ',
-'hysteric causal rondo Buenos clothesbrush: ',
-'corpsmen cobble glaze repellent exogenous: ',
-'ready: ',
-'Marceau McCabe: ',
-'Elaine raster wagoneer characteristic fuel fissile curtail headphone Walsh: ',
-'nozzle quilt Gaul saturater detour result Pilate Pickering consume: ',
-'idyll ripoff Bundoora hearken organic butchery Jovanovich Bella choke: ',
-'module hothouse shelf shortcut: ',
-'revelation Calvary Jackson subpoena headache: ',
-'shrive Bromfield shorefront marshland wherewith feint Carbone: ',
-'rumple conversation competitor fork homecoming perceptual connotative Dickerson: ',
-'lien: ',
-'netherworld won nutritious: ',
-'horseflesh impregnate nucleant foil psychoacoustic otter daemon thyroidal: ',
-'penetrate gunflint cockatoo skimpy nimbus suffice bade: ',
-'saloonkeep odorous warehouse: ',
-'edifice betroth Hannibal Slovenia volcanoes distraught dewy: ',
-'forgetting: ',
-'nuclei quiz cloister crystalline propos ye buckboard: ',
-'swept lurk: ',
-'thoroughfare westerly Pulaski hairy paternal Sternberg plyscore attorney Fogarty: ',
-'Yalta monologist Oregon Lawrence Bach alto anthology oxbow: ',
-'detonate beach shipbuilding antiquated deport Herkimer latch purveyor squirrel: ',
-'destinate optima Pollard alfresco Florentine evince: ',
-'Fe Galatia bereave: ',
-'rectifier bushy surety wishbone flagpole detach prey Eucharist: ',
-'firework declare Buddhist dawdle spruce juggernaut spermatozoon paragon field: ',
-'spasmodic interruptible tithe carbine chump coliform anxiety leach: ',
-'scene scaup Cinerama bristle crania salmonberry xerox Orca thum: ',
-'indicant ghetto NBC function tenspot midmorn highroad sentential nebulae: ',
-'sta: ',
-'lamentation irritant sometime: ',
-'slant dielectric Rhode: ',
-'folktale chamberlain slough wallaby unimodal: ',
-'needham empiric: ',
-'communicable signal: ',
-'Wyman whisk withdrawn: ',
-'elite seductive booby fold revoke consonant: ',
-'mid implementation presume: ',
-'yokel Pizarro deign: ',
-'slept operand Rudolph Borg Maharashtra b"xs" little odium: ',
-'congruent Duquesne droopy lessee: ',
-'attempt amoeboid Brookhaven Niger alp: ',
-'daemon pressure sisal whether ver miraculous Nostrand: ',
-'coequal thereafter somersault osteoporosis Presbyterian: ',
-'Muscovite absolute: ',
-'becket mythology Othello worn travel: ',
-'gnostic every cloy knot equitation knead shatterproof Claire: ',
-'Santa rotate jazzy: ',
-'aqueduct pejorative: ',
-'ostracism: ',
-'hardbound indivisible: ',
-'clumsy glacial Dorado longish Domesday Greenland Mont turnover: ',
-'Groton: ',
-'Oppenheimer blueberry OK fleabane cutaneous cavern Meredith trilogy Farley: ',
-'magistrate patois TEX vibrato abstain newscast went: ',
-'paratroop cheekbone bon extend Marion besiege NSF b"wed" atypic: ',
-'hitch practise Puccini Oslo: ',
-'flamingo: ',
-'cationic rescue hornpipe allspice delicatessen: ',
-'supposition: ',
-'Boswell buy ink octennial: ',
-'cavemen: ',
-'fatty newsmen aquarium tenor: ',
-'surrey lachrymose puddingstone motorcycle imperishable: ',
-'Ostrander longhorn fluffy sandal incorporate punctual BTL agate: ',
-'anterior: ',
-'few asocial blunderbuss commission: ',
-'existential stalactite Shelley fencepost Bryan: ',
-]
+def genPossibleLabels(n):
+    possibleStudentIDLabels = [
+    "Enter your Student ID: ",
+    "Enter Student or Personnel ID: ",
+    ]
+    try:
+        with open('allWords.txt') as allWordsFileObject:
+            listOfWords = allWordsFileObject.readlines()
+            listOfWords = [words[:-1] for words in listOfWords]
+    except FileNotFoundError:
+        with open(r'test_BackendStatics_TestingPrams\allWords.txt') as allWordsFileObject:
+            listOfWords = allWordsFileObject.readlines()
+            listOfWords = [words[:-1] for words in listOfWords]
+
+    OtherPossibleLabels = [' '.join([choice(listOfWords) for x in getRandomRange(0, 10)]) for x in range(n)]
+    for labelPos in range(len(OtherPossibleLabels)):
+        OtherPossibleLabels[labelPos]+= ': '
+    possibleStudentIDLabels = possibleStudentIDLabels + OtherPossibleLabels
+    return possibleStudentIDLabels
+
+possibleStudentIDLabels = genPossibleLabels(100)
 
 possibleStudentID = getVals(possibleStudentIDLabels)
 
