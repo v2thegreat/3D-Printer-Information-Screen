@@ -17,7 +17,6 @@
     Additional Note: There will have to be some way to modify the flag.
       Flags can be changed in a modular function by adding them to a list and modifying the list values. For more information, [read this](https://stackoverflow.com/questions/22338671/python-functions-to-change-values-in-place)
 
-
 * Finish Adding details for README
 
 * Add "go back" button to stage 5
@@ -47,19 +46,13 @@
 
 * Add custom theme support!
 
-* Write tests for BackendStatics
-
-* Consider breaking BackendStatics into smaller parts
-  * Put all higher level GUI Functions into a class for GUI Functions instead?
-    * This class would inherit BackendStatics and be present in the GUI package instead
-  * Put all the save functions into smaller parts too?
-    * this would be better for testing
-
 * Update State Machine.png
 
 <hr>
 
 ### Completed
+
+* Write tests for BackendStatics
 
 * Force Dialog to be in the center/top left corner
 
@@ -70,3 +63,11 @@
     * **Fix**: Added Additional Checks to make sure that this issue cannot be raised again
 
 * Add Config for screen dimensions (`800 x 480`? or something else?)
+
+* Consider breaking BackendStatics into smaller parts
+  * Put all higher level GUI Functions into a class for GUI Functions instead?
+    * This class would inherit BackendStatics and be present in the GUI package instead
+  * Put all the save functions into smaller parts too?
+    * this would be better for testing
+
+  **Fix**: Unnessary, leaving all static functions in one file
