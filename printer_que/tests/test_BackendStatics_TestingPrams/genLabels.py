@@ -1,7 +1,19 @@
 from random import choice
+from PyQt5 import QtWidgets
+
+
 __nums = [chr(ord('0')+x) for x in range(10)]
 getVals = lambda n:[''.join([choice(__nums) for x in range(choice(range(0, 9)))]) for x in range(len(n))]
 
+
+def genNumPushButtons(Dialog):
+    possibleNumberPushButtons = [QtWidgets.QPushButton(Dialog) for x in range(100)]
+    for pushButton in possibleNumberPushButtons:
+        pushButton.setText(choice(__nums))
+
+    return possibleNumberPushButtons
+
+# Generated from (https://stackoverflow.com/questions/18834636/random-word-generator-python)
 possibleStudentIDLabels = [
 "Enter your Student ID: ",
 "Enter Student or Personnel ID: ",
