@@ -107,11 +107,15 @@ class BackendStatics(object):
         Args:
             studentIDLabel    (:QLabel:    QtWidgets.QLabel): A QLabel object which needs to remove text
 
+        Function to check if it's possible to remove any characters from the student
+
         Checks the following things:
             - if the studentIDLabel is the same as DEFAULT_TEXT_lbl_St2_StudentIDDisplay
             - if the studentIDLabel is the same as DEFAULT_TEXT_lbl_St5_StudentOrPersonnelID
             - if the last character is a space character (' ')
             - if the last character is a colon character (':')
+
+        if any of these conditions are met, it will return False
         """
 
         isStdLabelTextSameAsDefaultStudentIDLabel = studentIDLabel.text() == DEFAULT_TEXT_lbl_St2_StudentIDDisplay
@@ -151,7 +155,8 @@ class BackendStatics(object):
         Args:
             studentIDLabel      (:QLabel:    QtWidgets.QLabel): A QLabel object which has the student ID that we need to use to save the user's ID or the personnel pin from
         """
-        open('Save Cancel Records.txt', 'a').write(BackendStatics._getSavingTextFormat(studentIDLabel))
+        with open('Save Cancel Records.txt', 'a') as fileObject:
+            fileObject.write(BackendStatics._getSavingTextFormat(studentIDLabel))
 
 
     @staticmethod
@@ -219,7 +224,8 @@ class BackendStatics(object):
         Gets the saving format and then saves it into "Print Records.txt"
         """
         savingFormat = BackendStatics._getSavingTextFormat(studentIDLabel)
-        open("Print Records.txt", 'a').write(savingFormat)
+        with open("Print Records.txt", 'a') as fileObject:
+            fileObject.write(savingFormat)
 
 
     @staticmethod
@@ -243,7 +249,8 @@ class BackendStatics(object):
         Gets the saving format and then saves it into Print Records.txt
         """
         savingFormat = BackendStatics._getSavingCSVFormat(studentIDLabel)
-        open('User Log.csv', 'a').write(savingFormat)
+        with open('User Log.csv', 'a') as fileObject:
+            fileObject.write(savingFormat)
 
 
     @staticmethod
@@ -256,6 +263,7 @@ class BackendStatics(object):
         """
         return DEFAULT_CSV_FORMAT.format(BackendStatics._getStdID(studentIDLabel),
                                          datetime.now().strftime(DEFAULT_DATE_FORMAT), time())
+
 
 if __name__ == '__main__':
     pass
