@@ -5,6 +5,8 @@ These are unit tests for the BackendStatics
 from unittest import TestCase, main
 from PyQt5 import QtWidgets
 from random import choice
+from itertools import product
+from os import listdir, remove
 import sys
 sys.path.append('../')
 
@@ -26,13 +28,12 @@ class test_BackendStatics(TestCase):
     - _setIncorrectLabelToDefault       (done)
     - setStudentIDLabelAsErrorLabel     (done)
     - _isAddDigit                       (done)
-    - _addText                          (progress)
-    - _isRemoveDigit
-    - _removeDigit
-    - saveCancelRecord
-    - sendDialogBack
-    - isCorrectStdID
-    - saveID
+    - _addText                          (done)
+    - _isRemoveDigit                    (done)
+    - _removeDigit                      (done)
+    - saveCancelRecord                  (done)
+    - isCorrectStdID                    (done)
+    - saveID                            (done)
     - _getStdID                         (subtest, _isAddDigit+)
     - _getAddDigit                      (subtest, _addText)
     - getRemoveDigit                    (subtest, _removeDigit)
@@ -40,6 +41,7 @@ class test_BackendStatics(TestCase):
     - _getSavingTextFormat              (subtest, saveCancelRecord+)
     - _saveAsCsv                        (subtest, saveID)
     - _getSavingCSVFormat               (subtest, _saveAsCsv)
+    - sendDialogBack                    (skipping, visually checkable)
     - isPersonnelPinCorrect             (skipped, wrapper for Personnel.isPinPresent(pin))
     """
 
@@ -64,7 +66,17 @@ class test_BackendStatics(TestCase):
 
 
     def tearDown(self):
-        pass
+        if 'Save Cancel Records.txt' in listdir():
+            remove('Save Cancel Records.txt')
+
+        if "Print Records.txt" in listdir():
+            remove("Print Records.txt")
+
+        if 'User Log.csv' in listdir():
+            remove('User Log.csv')
+
+        "Print Records.txt"
+        'User Log.csv'
 
 
     def test_setIncorrectLabelToDefault(self):
@@ -96,6 +108,73 @@ class test_BackendStatics(TestCase):
           for newLabel, stdID in zip(possibleStudentIDLabels, possibleStudentID):
               self.resetTestLabel(newLabel)
               assert BackendStatics._isAddDigit(self.testLabel) == (len(stdID) < 8)
+
+
+    def test__addText(self):
+        from test_BackendStatics_TestingPrams.genLabels import possibleStudentIDLabels, genNumPushButtons
+        self.setUpTestlabel()
+        for newLabel, testBtn in product(possibleStudentIDLabels, genNumPushButtons(self.Dialog)):
+            self.resetTestLabel(newLabel)
+            BackendStatics._addText(self.testLabel, testBtn)
+            assert self.testLabel.text() == newLabel + testBtn.text()
+
+
+    def test__isRemoveDigit(self):
+        from test_BackendStatics_TestingPrams.genLabels import possibleStudentIDLabels, possibleStudentID
+        self.setUpTestlabel()
+        for newLabel, stdID in zip(possibleStudentIDLabels, possibleStudentID):
+            self.resetTestLabel(newLabel)
+            assert BackendStatics._isRemoveDigit(self.testLabel) == (len(stdID) != 0)
+
+
+    def test__removeDigit(self):
+        from test_BackendStatics_TestingPrams.genLabels import possibleStudentIDLabels, possibleStudentID
+        self.setUpTestlabel()
+        for newLabel, stdID in zip(possibleStudentIDLabels, possibleStudentID):
+            self.resetTestLabel(newLabel)
+            if BackendStatics._isRemoveDigit(self.testLabel):
+                BackendStatics._removeDigit(self.testLabel)
+                assert self.testLabel.text() == newLabel[:-1]
+
+
+    def test_saveCancelRecord(self):
+        from test_BackendStatics_TestingPrams.genLabels import possibleStudentIDLabels, possibleStudentID
+        self.setUpTestlabel()
+        for newLabel, stdID in zip(possibleStudentIDLabels, possibleStudentID):
+            if len(stdID) != 0:
+                self.resetTestLabel(newLabel)
+                BackendStatics.saveCancelRecord(self.testLabel)
+
+                with open('Save Cancel Records.txt') as fileObject:
+                    lastRecord = fileObject.readlines()[-1]
+
+                assert stdID in lastRecord
+
+
+    def test_isCorrectStdID(self):
+        from test_BackendStatics_TestingPrams.genLabels import possibleStudentIDLabels, possibleStudentID
+        self.setUpTestlabel()
+        for newLabel, stdID in zip(possibleStudentIDLabels, possibleStudentID):
+            self.resetTestLabel(newLabel)
+            assert BackendStatics.isCorrectStdID(self.testLabel) == (len(stdID) == 8)
+
+
+    def test_saveID(self):
+        from test_BackendStatics_TestingPrams.genLabels import possibleStudentIDLabels, possibleStudentID
+        self.setUpTestlabel()
+        for newLabel, stdID in zip(possibleStudentIDLabels, possibleStudentID):
+            if len(stdID) != 0:
+                self.resetTestLabel(newLabel)
+                BackendStatics.saveID(self.testLabel)
+
+                with open("Print Records.txt") as fileObjectTxt:
+                    lastTextRecord = fileObjectTxt.readlines()[-1]
+
+                with open('User Log.csv') as fileObjectCsv:
+                    lastCsvRecord = fileObjectCsv.readlines()[-1]
+
+                assert stdID in lastTextRecord
+                assert stdID in lastCsvRecord
 
 
 
