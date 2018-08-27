@@ -1,11 +1,11 @@
 from test_Config import test_Configs
 from test_Defaults import test_Defaults
+from test_Personnel import test_Personnel
 try:
     from test_BackendStatics import test_BackendStatics
 except:
     print('Issue with importing test_BackendStatics, not running tests')
     pass
-from test_Personnel import test_Personnel
 
 from sys import path
 path.append('../')
