@@ -9,7 +9,11 @@ setup(name='printer_que',
 	license='MIT',
 	packages=['printer_que'],
 	zip_safe=False,
-	install_requires=['PyQt5'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest']
 )
+
+try:
+	import PyQt5
+except ImportError:
+	print('PyQt5 not installed. Install via: "pip3 install PyQt5" or apt-get install python3-pyqt5')
