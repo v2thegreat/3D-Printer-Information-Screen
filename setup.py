@@ -10,6 +10,6 @@ setup(name='printer_que',
 	packages=['printer_que'],
 	zip_safe=False,
 	install_requires=['PyQt5'],
-        setup_requires=['pytest-runner'],
-        tests_require=['pytest']
-	)
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest']
+)
