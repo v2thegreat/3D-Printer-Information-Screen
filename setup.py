@@ -16,4 +16,4 @@ setup(name='printer_que',
 try:
 	import PyQt5
 except ImportError:
-	print('PyQt5 not installed. Install via: "pip3 install PyQt5" or apt-get install python3-pyqt5')
+	print("PyQt5 not installed. Install via: 'pip3 install PyQt5' or 'apt-get install python3-pyqt5'")
