@@ -59,7 +59,8 @@ class PrinterUI(UI):
                 self.pb_St2_Num9,
                 self.pb_St2_BackSpace,
                 self.pb_St2_Enter,
-                self.lbl_St2_StudentIDDisplay
+                self.lbl_St2_StudentIDDisplay,
+                self.pb_St2_Go_Back
             ]
 
             self.stage3Widgets = []
@@ -82,7 +83,8 @@ class PrinterUI(UI):
                 self.pb_St5_Num9,
                 self.pb_St5_BackSpace,
                 self.pb_St5_Enter,
-                self.lbl_St5_StudentOrPersonnelID
+                self.lbl_St5_StudentOrPersonnelID,
+                self.pb_St5_Go_Back
             ]
 
             self.stage6Widgets = []

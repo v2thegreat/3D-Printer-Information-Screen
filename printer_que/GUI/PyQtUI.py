@@ -375,6 +375,32 @@ class UI(object):
         self.pb_St5_Num4.setStyleSheet(DEFAULT_STYLE_SHEET_pb_St5_Num9)
         self.pb_St5_Num4.setObjectName("pb_St5_Num4")
 
+#===============================================================================
+# This is the UI that is added by the programmer for additional functions and
+#hopes that a major change would not be needed
+        """
+        'Go Back' button for stage 2 is defined here
+        """
+        self.pb_St2_Go_Back = QtWidgets.QPushButton(Dialog)
+        self.pb_St2_Go_Back.setEnabled(True)
+        self.pb_St2_Go_Back.setGeometry(QtCore.QRect(0 , 410, 240, 40))
+        font = QtGui.QFont()
+        font.setFamily(DEFAULT_PUSHBUTTON_COMMON_FONT_FAMILY)
+        font.setPointSize(12)
+        self.pb_St2_Go_Back.setFont(font)
+        self.pb_St2_Go_Back.setStyleSheet(DEFAULT_STYLE_SHEET_pb_St5_Num9)
+        self.pb_St2_Go_Back.setObjectName("pb_St2_Go_Back")
+
+        self.pb_St5_Go_Back = QtWidgets.QPushButton(Dialog)
+        self.pb_St5_Go_Back.setEnabled(True)
+        self.pb_St5_Go_Back.setGeometry(QtCore.QRect(0 , 410, 240, 40))
+        font = QtGui.QFont()
+        font.setFamily(DEFAULT_PUSHBUTTON_COMMON_FONT_FAMILY)
+        font.setPointSize(12)
+        self.pb_St5_Go_Back.setFont(font)
+        self.pb_St5_Go_Back.setStyleSheet(DEFAULT_STYLE_SHEET_pb_St5_Num9)
+        self.pb_St5_Go_Back.setObjectName("pb_St2_Go_Back")
+
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -412,7 +438,8 @@ class UI(object):
         self.pb_St5_Num1.setText(_translate(DEFAULT_DIALOG_OBJECT_NAME, DEFAULT_TEXT_pb_St5_Num1))
         self.pb_St5_Num5.setText(_translate(DEFAULT_DIALOG_OBJECT_NAME, DEFAULT_TEXT_pb_St5_Num5))
         self.pb_St5_Num4.setText(_translate(DEFAULT_DIALOG_OBJECT_NAME, DEFAULT_TEXT_pb_St5_Num4))
-
+        self.pb_St2_Go_Back.setText(_translate(DEFAULT_DIALOG_OBJECT_NAME, DEFAULT_TEXT_pb_St2_Go_Back))
+        self.pb_St5_Go_Back.setText(_translate(DEFAULT_DIALOG_OBJECT_NAME, DEFAULT_TEXT_pb_St5_Go_Back))
 
 def main():
     import sys
