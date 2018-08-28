@@ -22,11 +22,11 @@ def genPossibleLabels(n):
     "Enter Student or Personnel ID: ",
     ]
     try:
-        with open('allWords.txt') as allWordsFileObject:
+        with open('allWords.dat') as allWordsFileObject:
             listOfWords = allWordsFileObject.readlines()
             listOfWords = [words[:-1] for words in listOfWords]
     except FileNotFoundError:
-        with open(r'test_BackendStatics_TestingPrams\allWords.txt') as allWordsFileObject:
+        with open(r'test_BackendStatics_TestingPrams\allWords.dat') as allWordsFileObject:
             listOfWords = allWordsFileObject.readlines()
             listOfWords = [words[:-1] for words in listOfWords]
 
