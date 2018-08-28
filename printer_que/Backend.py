@@ -64,6 +64,12 @@ class Backend(PrinterUI, BackendStatics):
         """
         Setting functionality
             This means that I'm assigning all the functions that each button and label press needs to call when I click on something
+            Note: Stages are indexed, and start at 0, but (as mentioned here) start at 1.
+                This applies to functions such as
+                    - _displayStage
+                    - _GoBack
+
+                These functions work on the indexing rather than the the actual stages
 
         As a redundancy, I'll set up try catch blocks with all of the functions that're called so that they can be noted in the logs
         """
@@ -105,6 +111,7 @@ class Backend(PrinterUI, BackendStatics):
         self.pb_St2_BackSpace.clicked.connect(lambda: self.removeDigit(self.lbl_St2_StudentIDDisplay))
         self.pb_St2_Enter.clicked.connect(lambda: self.digitEntered(self.lbl_St2_StudentIDDisplay, self.Dialog))
         self.lbl_St2_StudentIDDisplay.mousePressEvent = nothingFunc
+        self.pb_St2_Go_Back.clicked.connect(lambda: self._GoBack(2))
         print('Stage-2 functionality set')
 
         #Setting Stage 3 functionality
@@ -143,6 +150,7 @@ class Backend(PrinterUI, BackendStatics):
         self.pb_St5_BackSpace.clicked.connect(lambda: self.removeDigit(self.lbl_St5_StudentOrPersonnelID))
         self.pb_St5_Enter.clicked.connect(lambda: self.digitEnteredForPersonnel(self.lbl_St5_StudentOrPersonnelID, self.Dialog))
         self.lbl_St5_StudentOrPersonnelID.mousePressEvent = nothingFunc
+        self.pb_St5_Go_Back.clicked.connect(lambda: self._GoBack(5))
         print('Stage-5 functionality set')
 
         #Setting Stage 6 functionality
@@ -175,6 +183,9 @@ class Backend(PrinterUI, BackendStatics):
 
         print('Displaying stage-{} widgets'.format(stageNumber+1))
 
+
+    def _GoBack(self, currentStage):    #GUI Function --Dependency: PrinterUI Class
+        self._displayStage(currentStage-2)
 
     def addDigitForSt2(self, studentIDLabel, btn):    #GUI Button Function --Dependency: PrinterUI Class, Backend._setIncorrectLabelToDefault, Backend._isAddDigit, Backend._addText
         """
