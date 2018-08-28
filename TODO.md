@@ -1,7 +1,9 @@
 # TODO:
 
 * Finish Adding details for README
-
+* Fix Erasable Error message
+* Add Usage Settings after install
+* Easy to change pins (Change pin function, include cheat sheet)
 * Use smaller font size for all labels, to accommodate for the new font
 
 * make the UI in stage 5 more simple/tell them clearly what's going on
@@ -15,6 +17,8 @@
 <hr>
 
 ### Completed
+
+* Change Error message
 
 * Add "go back" button to stage 2 and stage 5
 
