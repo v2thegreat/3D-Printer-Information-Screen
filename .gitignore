@@ -106,3 +106,6 @@ printer_que/tests/Personnel Info.txt
 #Files created during runtime
 printer_que/*.csv
 printer_que/*.txt
+
+#ctag files that open due to Atom(most likely)
+printer_que/.tags1
