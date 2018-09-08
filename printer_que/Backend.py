@@ -6,17 +6,18 @@ import warnings
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Defaults.Misc_Defaults import nothingFunc
 
-#Importing basefunctions
+# Importing basefunctions
 from BackendStatics import *
 
-#Imoporting defaults
+# Importing defaults
 from Defaults.Misc_Defaults import STUDENT_ID_OR_PERSONNEL_ID_INCORRECT_MESSAGE
 
-#Importing GUI
+# Importing GUI
 from GUI.PrinterUI import PrinterUI
 
 
-#NOTE: MOST DOCUMENTATION HAS BEEN TAKEN FROM MY OWN OLDER CODE, AND MAYBE INACCURATE. WHILE I AM DOING MY BEST TO ENSURE THAT IT IS ALL UPTO DATE, THE USER SHOULD STILL BE WEARY. FURTHER, THIS MAY ALSO HAVE BUGS
+# NOTE: MOST DOCUMENTATION HAS BEEN TAKEN FROM MY OWN OLDER CODE, AND MAYBE INACCURATE. WHILE I AM DOING MY BEST TO
+# ENSURE THAT IT IS ALL UPTO DATE, THE USER SHOULD STILL BE WEARY. FURTHER, THIS MAY ALSO HAVE BUGS
 
 
 class Backend(PrinterUI, BackendStatics):

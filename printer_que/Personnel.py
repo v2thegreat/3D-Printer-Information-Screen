@@ -2,15 +2,24 @@
 # pylint: disable=pointless-string-statement
 # pylint: disable=too-few-public-methods
 
+import pickle
+from os import rename, remove
+
+PERSONNEL_INFO_CSV = 'Personnel Info.csv'
+PERSONNEL_INFO_TXT = 'Personnel Info.txt'
+AdminUsername = 'Admin'
+
 """
 This is the module for the Personnel class, and is designed to
 document which personnel in the sandbox are authorizing
 disabling of printers at the sandbox
 """
-import pickle
-
-PERSONNEL_INFO_CSV = 'Personnel Info.csv'
-PERSONNEL_INFO_TXT = 'Personnel Info.txt'
+AllPossibleCommands = """
+-h        or        --help                Display All Commands              python3 Personnel.py -h
+-a        or        --add                 Add new personnel type            python3 Personnel.py -a <new name> <new pin>
+-u        or        --update              Update a personnel type's pin     python3 Personnel.py -u <name> <new pin>
+-r        or        --remove              Remove a personnel type's pin     python3 Personnel.py -r <name>
+"""
 
 class Personnel(object):
     """
@@ -80,11 +89,42 @@ class Personnel(object):
             with open(personnel_list_file, 'rb') as file_object:
                 return Personnel.CheckInFile(file_object, hashed_pin)
         except FileNotFoundError:
+            createNewFileNow = input('File Not Found, would you like to create the file now? (y/n)')
+            if createNewFileNow:
+                main()
+
+    @staticmethod
+    def isUsernameAndPinPresent(username, pin, personnel_list_file=PERSONNEL_INFO_TXT):
+        """
+        Function to check if the username and password exist in the file
+        """
+        hashed_pin = Personnel._getHash(pin)
+        try:
+            with open(personnel_list_file, 'rb') as file_object:
+                return Personnel.CheckInFileAndUsername(file_object, hashed_pin)
+        except FileNotFoundError:
             print('File Not Found, returning False')
             return False
 
     @staticmethod
+    def CheckInFileAndUsername(file_object, username, hashed_pin):
+        """
+        Function to verify if username and password are correct
+        """
+        while True:
+            try:
+                user_details = pickle.load(file_object)
+                if username == user_details.name:
+                    if hashed_pin == user_details.pin:
+                        return True
+            except EOFError:
+                return False
+
+    @staticmethod
     def CheckInFile(file_object, hashed_pin):
+        """
+        Function to iterate over each object to see if it's pin matches or not
+        """
         while True:
             try:
                 user_details = pickle.load(file_object)
@@ -94,15 +134,48 @@ class Personnel(object):
                 return False
 
     @staticmethod
-    def addNewPersonnel(name, pin):
+    def addNewPersonnel(name, pin, adminPin):
         """
         Function to add a new personnel. It first checks if the personnel had a
         pin occour before, and asks to change it.
         """
-        if Personnel.isPinPresent(pin):
+        if not Personnel.isAdminPin(adminPin):
+            raise ValueError('Admin Pin Incorrect')
+        if Personnel.isUsernameAndPinPresent(name, pin):
             raise IndexError("Pin has been used before, please enter another pin")
         else:
             Personnel(name, pin)
+
+    @staticmethod
+    def isAdminPin(adminPin = None):
+        if not adminPin:
+            return True
+        return Personnel.CheckInFileAndUsername(AdminUsername, adminPin)
+
+    @staticmethod
+    def updatePersonnel(name, new_pin, adminPin):
+        if not Personnel.isAdminPin(adminPin):
+            raise ValueError('Admin Pin Incorrect')
+        else:
+            Personnel.removePersonnel(name, adminPin)
+            Personnel(name, new_pin)
+
+    @staticmethod
+    def removePersonnel(name, adminPin, personnel_list_file = PERSONNEL_INFO_TXT):
+        if not isAdminPin(adminPin):
+            raise ValueError('Admin Pin Incorrect')
+
+        with open(personnel_list_file, 'rb') as file_object:
+            newFileObject = open('temp' + personnel_list_file, 'wb')
+            while True:
+                try:
+                    user_details = pickle.load(file_object)
+                    if user_details.name != name:
+                        pickle.dump(file=newFileObject, obj=user_details)
+                except EOFError:
+                    newFileObject.close()
+                    remove(personnel_list_file)
+                    rename(src=newFileObject, dst=personnel_list_file)
 
     def _save(self):
         """
@@ -114,17 +187,81 @@ class Personnel(object):
         with open(PERSONNEL_INFO_TXT, 'ab') as file_object:
             pickle.dump(self, file_object)
 
-def main():
-    """
-    Main function to display the documentation for the class defined
-    """
-    while True:
+    @staticmethod
+    def resetPersonnelFiles():
         try:
-            name = input('Enter the new personnel name: ')
-            pin = input('Enter the new personnel pin: ')
-            Personnel.addNewPersonnel(name, pin)
+            remove(PERSONNEL_INFO_TXT)
+            remove(PERSONNEL_INFO_CSV)
+        except FileNotFoundError:
+            pass
+
+    @staticmethod
+    def addAdmin():
+        """
+        Main function to display the documentation for the class defined
+        """
+        try:
+            name = AdminUsername
+            pin = input('Enter the new Admin pin: ')
+            Personnel.addNewPersonnel(name, pin, None)
         except IndexError:
-            continue
+            pass
 
 if __name__ == '__main__':
-    main()
+
+    from sys import argv
+    print(argv)
+
+    if '-h' in argv or '--help' in argv:
+        print('The following commands are possible:')
+        print(AllPossibleCommands)
+
+    elif '-a' in argv or '--add' in argv:
+        new_user = argv[argv.index('-a' if '-a' in argv else '--add' in argv)+1]
+        new_pin = argv[argv.index(user)+1]
+        print('Please confirm:')
+        print('Personnel: {}'.format(new_user))
+        print('Pin: {}'.format(new_pin))
+        confirm = input("y/N")
+
+        if confirm.lower() == 'y':
+            expectedAdminPin = input("Please enter admin pin: ")
+            Personnel.addNewPersonnel(name=new_user, pin=new_pin)
+            print('User Added')
+        else:
+            #exit program
+            print("Aborting")
+            exit()
+
+    elif '-u' in argv or '--update' in argv:
+        user = argv[argv.index('-u' if '-u' in argv else '--update' in argv)+1]
+        new_pin = argv[argv.index(user)+1]
+        print('Please confirm:')
+        print('Personnel: {}'.format(user))
+        print('Pin: {}'.format(new_pin))
+        confirm = input("y/N")
+
+        if confirm.lower() == 'y':
+            expectedAdminPin = input("Please enter admin pin: ")
+            Personnel.updatePersonnel(name=user, new_pin=new_pin, adminPin=expectedAdminPin)
+            print('Personnel Updated')
+        else:
+            print("Aborting")
+            exit()
+
+    elif '-r' in argv or '--remove' in argv:
+        user = argv[argv.index('-u' if '-u' in argv else '--update' in argv)+1]
+        print('Please confirm:')
+        print('Personnel: {}'.format(user))
+        confirm = input("y/N")
+        if confirm.lower() == 'y':
+            expectedAdminPin = input("Please enter admin pin: ")
+            Personnel.removePersonnel(name=user, adminPin=expectedAdminPin)
+            print('Personnel removed')
+        else:
+            print("Aborting")
+            exit()
+
+    else:
+        print('Command not understood, here is a list of avalible commands')
+        print(AllPossibleCommands)
