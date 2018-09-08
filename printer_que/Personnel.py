@@ -15,6 +15,8 @@ document which personnel in the sandbox are authorizing
 disabling of printers at the sandbox
 """
 AllPossibleCommands = """
+Commands                                  What it does                      Syntax Example
+
 -h        or        --help                Display All Commands              python3 Personnel.py -h
 -a        or        --add                 Add new personnel type            python3 Personnel.py -a <new name> <new pin>
 -u        or        --update              Update a personnel type's pin     python3 Personnel.py -u <name> <new pin>
@@ -218,7 +220,7 @@ if __name__ == '__main__':
 
     elif '-a' in argv or '--add' in argv:
         new_user = argv[argv.index('-a' if '-a' in argv else '--add' in argv)+1]
-        new_pin = argv[argv.index(user)+1]
+        new_pin = argv[argv.index(new_user)+1]
         print('Please confirm:')
         print('Personnel: {}'.format(new_user))
         print('Pin: {}'.format(new_pin))
