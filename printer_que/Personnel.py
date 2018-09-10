@@ -3,7 +3,7 @@
 # pylint: disable=too-few-public-methods
 
 import pickle
-from os import rename, remove
+from os import rename, remove, listdir
 
 PERSONNEL_INFO_CSV = 'Personnel Info.csv'
 PERSONNEL_INFO_TXT = 'Personnel Info.txt'
@@ -21,6 +21,7 @@ Commands                                  What it does                      Synt
 -a        or        --add                 Add new personnel type            python3 Personnel.py -a <new name> <new pin>
 -u        or        --update              Update a personnel type's pin     python3 Personnel.py -u <name> <new pin>
 -r        or        --remove              Remove a personnel type's pin     python3 Personnel.py -r <name>
+-l        or        --list                List all users                    python3 Personnel.py -l
 """
 
 class Personnel(object):
@@ -87,13 +88,8 @@ class Personnel(object):
         Function to check if the pin is present in the hash of the pins
         """
         hashed_pin = Personnel._getHash(pin)
-        try:
-            with open(personnel_list_file, 'rb') as file_object:
-                return Personnel.CheckInFile(file_object, hashed_pin)
-        except FileNotFoundError:
-            createNewFileNow = input('File Not Found, would you like to create the file now? (y/n)')
-            if createNewFileNow:
-                main()
+        with open(personnel_list_file, 'rb') as file_object:
+            return Personnel.CheckIfPinMatchesInFile(file_object, hashed_pin)
 
     @staticmethod
     def isUsernameAndPinPresent(username, pin, personnel_list_file=PERSONNEL_INFO_TXT):
@@ -101,15 +97,11 @@ class Personnel(object):
         Function to check if the username and password exist in the file
         """
         hashed_pin = Personnel._getHash(pin)
-        try:
-            with open(personnel_list_file, 'rb') as file_object:
-                return Personnel.CheckInFileAndUsername(file_object, hashed_pin)
-        except FileNotFoundError:
-            print('File Not Found, returning False')
-            return False
+        with open(personnel_list_file, 'rb') as file_object:
+            return Personnel.CheckIfUsernameAndPinMatchesInFile(file_object, username, hashed_pin)
 
     @staticmethod
-    def CheckInFileAndUsername(file_object, username, hashed_pin):
+    def CheckIfUsernameAndPinMatchesInFile(file_object, username, hashed_pin):
         """
         Function to verify if username and password are correct
         """
@@ -123,9 +115,9 @@ class Personnel(object):
                 return False
 
     @staticmethod
-    def CheckInFile(file_object, hashed_pin):
+    def CheckIfPinMatchesInFile(file_object, hashed_pin):
         """
-        Function to iterate over each object to see if it's pin matches or not
+        Function to iterate over each object in the file to see if its pin matches or not
         """
         while True:
             try:
@@ -141,43 +133,68 @@ class Personnel(object):
         Function to add a new personnel. It first checks if the personnel had a
         pin occour before, and asks to change it.
         """
-        if not Personnel.isAdminPin(adminPin):
+        if adminPin == -1:
+            Personnel(name, pin)
+        elif not Personnel.isAdminPin(adminPin):
             raise ValueError('Admin Pin Incorrect')
-        if Personnel.isUsernameAndPinPresent(name, pin):
+        elif Personnel.isUsernameAndPinPresent(name, pin):
             raise IndexError("Pin has been used before, please enter another pin")
         else:
             Personnel(name, pin)
 
     @staticmethod
-    def isAdminPin(adminPin = None):
-        if not adminPin:
+    def isAdminPin(adminPin):
+        """
+        Function to check if the given pin is the admin's pin or not
+            is over ridden when adminPin is kept as -1 (signed int)
+        returns Boolean
+        """
+        if adminPin == -1:
             return True
-        return Personnel.CheckInFileAndUsername(AdminUsername, adminPin)
+        return Personnel.isUsernameAndPinPresent(AdminUsername, adminPin)
 
     @staticmethod
     def updatePersonnel(name, new_pin, adminPin):
-        if not Personnel.isAdminPin(adminPin):
+        """
+        Commandline function to update the personnel files
+            Checks if admin pin provided is correct or not
+                if incorrect, raises value error
+            removes personnel from file based on given pin
+            adds personnel back with updated pin
+        """
+        if not Personnel.isAdminPin(adminPin= adminPin):
             raise ValueError('Admin Pin Incorrect')
         else:
-            Personnel.removePersonnel(name, adminPin)
+            Personnel.removePersonnel(name=name, adminPin=adminPin)
             Personnel(name, new_pin)
 
     @staticmethod
     def removePersonnel(name, adminPin, personnel_list_file = PERSONNEL_INFO_TXT):
-        if not isAdminPin(adminPin):
+        """
+        Commandline function to remove the personnel files
+            Checks if admin pin provided is correct or not
+                if incorrect, raises value error
+            opens personnel files
+            iterates over each object and saves it to a list(ListOfUsers)
+                when EOFError ocours, it deletes PERSONNEL_INFO_CSV and
+                PERSONNEL_INFO_TXT and runs the _save function for each of the Personnel objects
+        """
+        if not Personnel.isAdminPin(adminPin):
             raise ValueError('Admin Pin Incorrect')
 
-        with open(personnel_list_file, 'rb') as file_object:
-            newFileObject = open('temp' + personnel_list_file, 'wb')
+        with open(file=personnel_list_file, mode='rb') as file_object:
+            ListOfUsers = []
             while True:
                 try:
-                    user_details = pickle.load(file_object)
+                    user_details = pickle.load(file=file_object)
                     if user_details.name != name:
-                        pickle.dump(file=newFileObject, obj=user_details)
+                        ListOfUsers.append(user_details)
                 except EOFError:
-                    newFileObject.close()
-                    remove(personnel_list_file)
-                    rename(src=newFileObject, dst=personnel_list_file)
+                    remove(PERSONNEL_INFO_CSV)
+                    remove(PERSONNEL_INFO_TXT)
+                    for user in ListOfUsers:
+                        user._save()
+                    break
 
     def _save(self):
         """
@@ -191,6 +208,10 @@ class Personnel(object):
 
     @staticmethod
     def resetPersonnelFiles():
+        """
+        function to erase all personnel information as if it's the first time
+        This feature is only for debugging
+        """
         try:
             remove(PERSONNEL_INFO_TXT)
             remove(PERSONNEL_INFO_CSV)
@@ -200,21 +221,40 @@ class Personnel(object):
     @staticmethod
     def addAdmin():
         """
-        Main function to display the documentation for the class defined
+        Function to add the Admin the first time the sets up the machine
         """
-        try:
-            name = AdminUsername
-            pin = input('Enter the new Admin pin: ')
-            Personnel.addNewPersonnel(name, pin, None)
-        except IndexError:
-            pass
+        # try:
+        name = AdminUsername
+        pin = input('Enter the new Admin pin: ')
+        Personnel.addNewPersonnel(name, pin, -1)
+        # except IndexError:
+        #     pass
+
+    @staticmethod
+    def listAllUsers():
+        """
+        Commandline function to display all the personnel associated with the account
+        Source: PERSONNEL_INFO_CSV file
+        """
+        with open(PERSONNEL_INFO_CSV) as UserFileObject:
+            ListOfUsers = UserFileObject.readlines()
+            ListOfUsers = [x.split(',')[0] for x in ListOfUsers]
+            for user in ListOfUsers:
+                print(user)
+
 
 if __name__ == '__main__':
-
     from sys import argv
-    print(argv)
+    if not (PERSONNEL_INFO_CSV in listdir() and PERSONNEL_INFO_TXT in listdir()):
+        createNewFileNow = input('File Not Found, would you like to create the file now? (y/n) ')
+        if createNewFileNow.lower() == 'y':
+            Personnel.addAdmin()
+            print('Added; going to quit now')
+        else:
+            print("Aborting")
+            exit()
 
-    if '-h' in argv or '--help' in argv:
+    elif '-h' in argv or '--help' in argv:
         print('The following commands are possible:')
         print(AllPossibleCommands)
 
@@ -228,7 +268,7 @@ if __name__ == '__main__':
 
         if confirm.lower() == 'y':
             expectedAdminPin = input("Please enter admin pin: ")
-            Personnel.addNewPersonnel(name=new_user, pin=new_pin)
+            Personnel.addNewPersonnel(name=new_user, pin=new_pin, adminPin=expectedAdminPin)
             print('User Added')
         else:
             #exit program
@@ -245,14 +285,14 @@ if __name__ == '__main__':
 
         if confirm.lower() == 'y':
             expectedAdminPin = input("Please enter admin pin: ")
-            Personnel.updatePersonnel(name=user, new_pin=new_pin, adminPin=expectedAdminPin)
+            Personnel.updatePersonnel(user, new_pin, expectedAdminPin)
             print('Personnel Updated')
         else:
             print("Aborting")
             exit()
 
     elif '-r' in argv or '--remove' in argv:
-        user = argv[argv.index('-u' if '-u' in argv else '--update' in argv)+1]
+        user = argv[argv.index('-r' if '-r' in argv else '--remove' in argv)+1]
         print('Please confirm:')
         print('Personnel: {}'.format(user))
         confirm = input("y/N")
@@ -264,6 +304,9 @@ if __name__ == '__main__':
             print("Aborting")
             exit()
 
-    else:
+    elif '-l' in argv or '--list' in argv:
+        Personnel.listAllUsers()
+
+    elif len(argv) != 1:
         print('Command not understood, here is a list of avalible commands')
         print(AllPossibleCommands)
