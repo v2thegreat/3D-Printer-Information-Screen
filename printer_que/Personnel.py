@@ -5,15 +5,10 @@
 import pickle
 from os import rename, remove, listdir
 
+
 PERSONNEL_INFO_CSV = 'Personnel Info.csv'
 PERSONNEL_INFO_TXT = 'Personnel Info.txt'
 AdminUsername = 'Admin'
-
-"""
-This is the module for the Personnel class, and is designed to
-document which personnel in the sandbox are authorizing
-disabling of printers at the sandbox
-"""
 AllPossibleCommands = """
 Commands                                  What it does                      Syntax Example
 
@@ -23,6 +18,14 @@ Commands                                  What it does                      Synt
 -r        or        --remove              Remove a personnel type's pin     python3 Personnel.py -r <name>
 -l        or        --list                List all users                    python3 Personnel.py -l
 """
+
+
+"""
+This is the module for the Personnel class, and is designed to
+document which personnel in the sandbox are authorizing
+disabling of printers at the sandbox
+"""
+
 
 class Personnel(object):
     """
@@ -89,7 +92,7 @@ class Personnel(object):
         """
         hashed_pin = Personnel._getHash(pin)
         with open(personnel_list_file, 'rb') as file_object:
-            return Personnel.CheckIfPinMatchesInFile(file_object, hashed_pin)
+            return Personnel.__CheckIfPinMatchesInFile(file_object, hashed_pin)
 
     @staticmethod
     def isUsernameAndPinPresent(username, pin, personnel_list_file=PERSONNEL_INFO_TXT):
@@ -98,10 +101,10 @@ class Personnel(object):
         """
         hashed_pin = Personnel._getHash(pin)
         with open(personnel_list_file, 'rb') as file_object:
-            return Personnel.CheckIfUsernameAndPinMatchesInFile(file_object, username, hashed_pin)
+            return Personnel.__CheckIfUsernameAndPinMatchesInFile(file_object, username, hashed_pin)
 
     @staticmethod
-    def CheckIfUsernameAndPinMatchesInFile(file_object, username, hashed_pin):
+    def __CheckIfUsernameAndPinMatchesInFile(file_object, username, hashed_pin):
         """
         Function to verify if username and password are correct
         """
@@ -115,7 +118,7 @@ class Personnel(object):
                 return False
 
     @staticmethod
-    def CheckIfPinMatchesInFile(file_object, hashed_pin):
+    def __CheckIfPinMatchesInFile(file_object, hashed_pin):
         """
         Function to iterate over each object in the file to see if its pin matches or not
         """
