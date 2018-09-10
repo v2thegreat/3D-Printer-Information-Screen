@@ -182,7 +182,8 @@ class Personnel(object):
         if not Personnel.isAdminPin(adminPin):
             raise ValueError('Admin Pin Incorrect')
 
-        with open(file=personnel_list_file, mode='rb') as file_object:
+        else:
+            file_object = open(personnel_list_file, 'rb')
             ListOfUsers = []
             while True:
                 try:
@@ -190,6 +191,7 @@ class Personnel(object):
                     if user_details.name != name:
                         ListOfUsers.append(user_details)
                 except EOFError:
+                    file_object.close()
                     remove(PERSONNEL_INFO_CSV)
                     remove(PERSONNEL_INFO_TXT)
                     for user in ListOfUsers:
