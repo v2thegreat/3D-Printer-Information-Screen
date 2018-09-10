@@ -10,8 +10,10 @@ It is designed to ensure safety and reliability from the personnel module
 """
 
 from unittest import TestCase, main
+from unittest.mock import patch
 import sys
 sys.path.append('../')
+import pickle
 
 from Personnel import Personnel, PERSONNEL_INFO_CSV, PERSONNEL_INFO_TXT
 
@@ -33,6 +35,17 @@ class test_Personnel(TestCase):
         - check_pin
         - add_new_personnel: staticmethod
 
+    The following functions are for the commandline intereface
+        - addAdmin                              (done)
+        - resetPersonnelFiles                   (done)
+        - removePersonnel                       (done, issue when running in windows, PermissionError)
+        - updatePersonnel                       (done, issue when running in windows, PermissionError)
+        - isAdminPin                            (done)
+        - isUsernameAndPinPresent               (done)
+        - CheckIfPinMatchesInFile               (subtest, isPinPresent)
+        - CheckIfUsernameAndPinMatchesInFile    (subtest, isUsernameAndPinPresent)
+        - addNewPersonnel                       (subtest, addAdmin)
+        - listAllUsers                          (ignored)
     """
 
 
@@ -44,13 +57,21 @@ class test_Personnel(TestCase):
         self.personnel2 = Personnel('Alan Wolf', '1300134')
         self.PERSONNEL_INFO_TXT = 'Test Personnel Info.txt'
 
+
     def tearDown(self):
         """
         Deletes the saved information
         """
         from os import remove
-        remove(PERSONNEL_INFO_TXT)
-        remove(PERSONNEL_INFO_CSV)
+        try:
+            remove(PERSONNEL_INFO_TXT)
+        except FileNotFoundError:
+            pass
+
+        try:
+            remove(PERSONNEL_INFO_CSV)
+        except FileNotFoundError:
+            pass
 
 
     def test__getHash(self):
@@ -113,7 +134,6 @@ class test_Personnel(TestCase):
         assert self.personnel2.__str__() == '{0}, {1}'.format(self.personnel2.name, self.personnel2.pin)
 
 
-
     def test_repr_magic_function(self):
         """
         Test to check if repr magic function is working as expected
@@ -148,5 +168,63 @@ class test_Personnel(TestCase):
         Test to check if adding new personnel is working properly
         """
 
+
+    @patch('builtins.input', return_value='12345')
+    def test_addAdmin(self, input):
+        Personnel.addAdmin()
+        with open(PERSONNEL_INFO_CSV) as csv_file_obj:
+            csvContent = csv_file_obj.read()
+        with open(PERSONNEL_INFO_TXT, 'rb') as txt_file_obj:
+            while True:
+                txtContent = pickle.load(txt_file_obj)
+                if txtContent.name == 'Admin':
+                    break
+
+        assert 'Admin' in csvContent
+        assert 'Admin' == txtContent.name
+
+
+    def test_resetPersonnelFiles(self):
+        from os import listdir
+        Personnel.resetPersonnelFiles()
+        assert PERSONNEL_INFO_TXT not in listdir()
+        assert PERSONNEL_INFO_CSV not in listdir()
+
+
+    @patch('builtins.input', return_value='12345')
+    def addAdminToFileForTest(self, input):
+        Personnel.addAdmin()
+
+
+    def test_removePersonnel(self):
+        Personnel.removePersonnel(name=self.personnel1.name, adminPin=-1)
+        #Personnel.removePersonnel(name=self.personnel1.name, adminPin=-1)
+
+        assert not Personnel.isUsernameAndPinPresent(self.personnel1.name, '1300135')
+        #assert not Personnel.isUsernameAndPinPresent(self.personnel2.name, '1300134')
+
+
+    def test_updatePersonnel(self):
+        Personnel.updatePersonnel(name=self.personnel1.name, new_pin="4444", adminPin=-1)
+        Personnel.updatePersonnel(name=self.personnel2.name, new_pin="5555", adminPin=-1)
+
+        assert Personnel.isPinPresent(pin = '4444', personnel_list_file=PERSONNEL_INFO_TXT)
+        assert Personnel.isPinPresent(pin = '5555', personnel_list_file=PERSONNEL_INFO_TXT)
+
+
+    def test_isAdminPin(self):
+        self.addAdminToFileForTest()
+        assert Personnel.isAdminPin('12345')
+        assert not Personnel.isAdminPin('123444')
+
+
+    def test_isUsernameAndPinPresent(self):
+        print(Personnel.listAllUsers())
+        assert Personnel.isUsernameAndPinPresent(username=self.personnel1.name, pin='1300135')
+        assert Personnel.isUsernameAndPinPresent(username=self.personnel2.name, pin='1300134')
+        assert not Personnel.isUsernameAndPinPresent(username=self.personnel1.name, pin='3443')
+        assert not Personnel.isUsernameAndPinPresent(username=self.personnel2.name, pin='3333')
+
+
 if __name__ == '__main__':
-    main()
+    main(buffer=True)
