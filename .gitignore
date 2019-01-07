@@ -112,3 +112,4 @@ printer_que/.tags1
 
 #PyCharm Files
 .idea/
+venv/
