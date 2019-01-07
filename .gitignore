@@ -109,3 +109,6 @@ printer_que/*.txt
 
 #ctag files that open due to Atom(most likely)
 printer_que/.tags1
+
+#PyCharm Files
+.idea/
