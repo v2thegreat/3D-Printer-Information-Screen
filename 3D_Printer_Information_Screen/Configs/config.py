@@ -18,3 +18,6 @@ except FileNotFoundError:
 
 SCREEN_RESOLUTION = (800, 480)
 STARTUP_POS = (0, 0)
+
+if __name__ == '__main__':
+    pass

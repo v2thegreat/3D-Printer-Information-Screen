@@ -25,7 +25,6 @@
   <property name="styleSheet">
    <string notr="true">background: rgb(255, 255, 255)</string>
   </property>
-<<<<<<< HEAD
   <widget class="QLabel" name="lblStudentIDDisplay">
 =======
   <widget class="QLabel" name="lbl_St2_StudentIDDisplay">
